@@ -1,0 +1,26 @@
+/* CSS Document */
+
+.content-left{
+	width:12%;
+	height:600px;
+	border-right:1px solid #BDBDBD;
+	border-left:1px solid #BDBDBD;
+}
+.function{
+	position:relative;
+	padding:0;
+	margin:0;
+}
+
+.function li{
+	display:block;
+	padding:5px;
+	margin:0 5px;
+	border-bottom:1px solid #BDBDBD;
+	text-align:center;
+}
+.content-right{
+	width:88%;
+	height:600px;
+	float:right;
+}
