@@ -4,8 +4,11 @@
 <meta charset="UTF-8">
 <base href="<?php echo base_url(); ?>" />
 <title>MayStudio - Index</title>
-<link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/index.css" />
+<?php  foreach ($css as $value) {  ?>
+      <link rel="stylesheet" href="css/<?php echo $value ?>.css" />
+<?php } ?>
+<!-- <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/index.css" /> -->
 </head>
 <body>
 <div id="page">
