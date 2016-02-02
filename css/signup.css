@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.content-left{
+	
+	width:30%;
+	height:100%;
+	float:left;
+	margin-left:22%;
+}
+
+.content-right{
+	box-sizing:border-box;
+	background:url(../images/permit-back.png) no-repeat center center;
+	background-size:300px 491px;
+	width:300px;
+	height:491px;
+	float:right;
+	margin-right:22%;
+	padding-top:8em;
+}
+#signup-form{
+	text-align:center;
+	line-height:150%;
+}
+#signup-submit{
+	margin-top:1em;
+}

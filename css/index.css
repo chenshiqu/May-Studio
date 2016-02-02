@@ -1,14 +1,19 @@
 @charset "UTF-8";
+#canvas{
+		background-color:#FFFFFF;
+		width:100%;
+		height:600px;
+		margin:0;
+	}
 #content{
-	width:85%;
-	height:600px;
-	margin:0 auto;
+	width:100%;
+	margin:0;
+	padding:0;
 }
 .content-left{
 	
 	width:66%;
 	height:100%;
-	float:left;
 }
 .content-right{
 	width:34%;
@@ -35,24 +40,7 @@
 	width:99%;
 	border:8px solid #FFFFFF;
 }
-.footer{
-	height:10.8%;
-	width:99%;
-	border:8px solid #FFFFFF;
-}
-.footer hr{
-	height:1px;
-	border:none;
-	border-top:1px solid #BDBDBD;
-}
-.footer p{
-	text-align:center;
-}
-.footer a{
-	text-decoration:none;
-	color:black;
-	
-}
+
 /*slider*/
 .slider{
 	width:100%;
