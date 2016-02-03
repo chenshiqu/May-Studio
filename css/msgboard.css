@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* CSS Document */
+#content{
+	clear:both;
+	padding:0;
+	overflow:hidden;
+}
+.content-third{
+	box-sizing:border-box;
+	width:30%;
+	height:100%;
+	float:left;
+	margin:0 1em;
+	padding:0;
+}
+.msg{
+	height:20%;
+	width:90%;
+	font-size:0.8em;
+	background:url(../images/sticker.png) no-repeat center center;
+	background-size:100% 100%;
+	padding:5%;
+	margin-bottom:1em;
+}
+
+.leave-message{
+	background:url(../images/sticker.png) no-repeat center center;
+	background-size:100% 100%;
+	padding:2em;
+	font-size:80%;
+	margin-left:1em;
+	text-align:center;
+}
+.msg-username{
+	background:url(../images/profile-photo.png) left bottom no-repeat;
+	background-size:auto 100%;
+	padding-left:1em;
+}
+.like{
+	font-size:80%;
+	background:url(../images/like.png) left center no-repeat;
+	background-size:auto 100%;
+	padding-left:1.5em;
+	margin-right:1em;
+}
+.reply{
+	font-size:80%;
+	background:url(../images/reply.png) left center no-repeat;
+	background-size:auto 100%;
+	padding-left:1.5em;
+}

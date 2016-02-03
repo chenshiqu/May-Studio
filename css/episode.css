@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/* CSS Document */
+#content{
+	clear:both;
+	height:auto;
+}
+.content-left{
+	text-align:center;
+	width:48%;
+	height:100%;
+	float:left;
+	margin-left:7%;
+}
+
+.content-right{
+	width:25%;
+	height:100%;
+	float:right;
+	margin-top:30%;
+	margin-right:10%;
+	border:thin solid black;
+	padding:0 1em;
+}
+.comment{
+	box-sizing:border-box;
+	height:20%;
+	width:100%;
+	font-size:0.8em;
+	border-bottom:thin solid black;
+	padding-bottom:0.5em;
+}
+.comment:last-child{
+	border-bottom:none;
+}
+.make-comment{
+	padding-top:1em;
+	font-size:80%;
+}
+.cmt-username{
+	background:url(../images/profile-photo.png) left bottom no-repeat;
+	background-size:auto 100%;
+	padding-left:1em;
+}
+.like{
+	font-size:80%;
+	background:url(../images/like.png) left center no-repeat;
+	background-size:auto 100%;
+	padding-left:1.5em;
+	margin-right:1em;
+}
+.reply{
+	font-size:80%;
+	background:url(../images/reply.png) left center no-repeat;
+	background-size:auto 100%;
+	padding-left:1.5em;
+}

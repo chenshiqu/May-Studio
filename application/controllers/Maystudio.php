@@ -18,18 +18,44 @@ class Maystudio extends CI_Controller
                 $this->load->view('index');
                 $this->load->view('footer');
         }
-        //关于我们
+        //关于我们／联系方式
         public function about()
         {
-                $this->load->view('header');
+				$data['css']=array('stories','style');
+                $this->load->view('header',$data);
                 $this->load->view('about');
                 $this->load->view('footer');
         }
-        //联系我们
-        public function contact_info()
+		//漫画
+		public function stories()
         {
-                $this->load->view('header');
-                $this->load->view('contact_info');
+				$data['css']=array('stories','style');
+                $this->load->view('header',$data);
+                $this->load->view('stories');
+                $this->load->view('footer');
+        }
+		//留言版
+		public function msgboard()
+        {
+				$data['css']=array('msgboard','style');
+                $this->load->view('header',$data);
+                $this->load->view('msgboard');
+                $this->load->view('footer');
+        }
+		//注册
+		public function signup()
+        {
+				$data['css']=array('signup','style');
+                $this->load->view('header',$data);
+                $this->load->view('signup');
+                $this->load->view('footer');
+        }
+		//
+		public function episode()
+        {
+				$data['css']=array('episode','style');
+                $this->load->view('header',$data);
+                $this->load->view('episode');
                 $this->load->view('footer');
         }
 }

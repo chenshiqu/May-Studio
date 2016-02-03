@@ -5,8 +5,18 @@ body{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:16px;
 	color:#000000;
-	background-color:#FFFFFF;
-	padding:0 auto;
+	background-color:#ffffff;
+	padding:0;
+	margin:0;
+	border-top:thick solid #000000;
+	height:100%;
+	width:100%;
+}
+#page{
+	margin:0;
+	padding:0;
+	height:100%;
+	width:100%;
 }
 a{
 	text-decoration:none;
@@ -24,15 +34,19 @@ a{
 }
 .nav{
 	/*position:relative;*/
+	
 	top:-1.6em;
-	border-bottom: 1px solid #BDBDBD;
-	padding:0 4.5em 1em;
+	padding:0 1em;
+	margin:0 0 2em;
 }
 
 .nav li{
 	display:inline-block;
 	margin-left: .8em;
 	font-size:120%;
+}
+.nav li:first-child{
+	margin-left:0;
 }
 .current:after{
 	position:relative;
@@ -46,15 +60,56 @@ a{
 #login-nav{
 	font-size:120%;
 	position:relative;
-	bottom:-.3em;
+	bottom:-1.5em;
 	float:right;
-	margin-top:22px;
-	margin-right:4.5em;
+}
+#login:hover{
+	cursor:pointer;
+}
+/*modal-window*/
+.modal {
+  position: absolute;
+  z-index: 1000;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 2px 2px 4px #525252;
+ }
+
+.modal-close {
+  	float:right;
+  }
+  
+  #login-window {
+  text-align: center;
+  line-height:200%;
+  clear: both;
+  padding: 15px;}
+  
+#login-submit, input[type="submit"]{
+	border:none;
+	background-color:#000000;
+	color:#FFFFFF;
+	border-radius:5px;
+	font-size:100%;
+	padding:3px 8px;
 }
 /*内容*/
+
+#footer{
+	text-align:center;
+	clear:both;
+}
+#footer a{
+	text-decoration:underline;
+}
+
 #content{
-	width:85%;
+	width:100%;
 	height:600px;
-	margin:0 auto;
+	margin:0;
 	padding:0;
+	font-size:120%;
+}
+#content li{
+	display:block;
 }
