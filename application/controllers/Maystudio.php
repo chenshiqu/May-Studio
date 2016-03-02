@@ -42,14 +42,7 @@ class Maystudio extends CI_Controller
                 $this->load->view('msgboard');
                 $this->load->view('footer');
         }
-		//注册
-		public function signup()
-        {
-				$data['css']=array('signup','style');
-                $this->load->view('header',$data);
-                $this->load->view('signup');
-                $this->load->view('footer');
-        }
+       
 		//
 		public function episode()
         {

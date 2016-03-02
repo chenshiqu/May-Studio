@@ -21,7 +21,7 @@
             <li id="login-nav">
             	<a id="login">登录</a>
                 ／
-                <a href="<?php echo base_url(); ?>index.php/maystudio/signup" >注册</a>
+                <a href="<?php echo base_url(); ?>index.php/login/signup" >注册</a>
             </li>
             <!--<li><a href="games.html">游戏</a></li>
             <li><a href="shopping.html">代购</a></li>-->
