@@ -1,4 +1,7 @@
 <?php  
+/**
+ * 登入注册类
+ */
 class Login extends CI_Controller
 {
 	function __construct()
@@ -10,11 +13,58 @@ class Login extends CI_Controller
 		$this->load->model('login_model');
 	}
 
+	/** 
+	 * 用户名异步验证
+	 * @return 0表示用户不存在 1表示存在
+	 */
+	public function check_username()
+	{
+		$message=1;
+		$username=$_POST['username'];
+		$user=$this->login_model->get_user($username);
+		if(empty($user))
+		{
+			$message=0;
+		}
+		else
+		{
+			$message=1;
+		}
+		echo $message;
+	}
+
+	/**
+	 * 异步登陆检查 
+	 * @return 0 用户名不存在 1 密码错误 2 登陆成功
+	 */
+	public function signin()
+	{
+		$data=$_POST;
+		$username=$data['username'];
+		$user=$this->login_model->get_user($username);
+
+		if(!empty($user))
+		{
+			if(md5($data['password'])==$user['password'])
+			{
+				echo 2;
+			}
+			else
+			{
+				echo 1;
+			}
+		}
+		else
+		{
+			echo 0;
+		}
+	}
+
 	 //注册
         	public function signup()
         	{
               	$data['css']=array('signup','style');
-              	$data['js']=array('jquery','jquery.validate','signup-validate');
+              	$data['js']=array('signup-validate');
               	$this->load->view('header',$data);
               	$this->load->view('signup');
               	$this->load->view('footer');
