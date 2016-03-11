@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'w.rdc.sae.sina.com.cn:3307',
-	'username' => '348127304@qq.com',
-	'password' => 'cyr5121314',
-	'database' => 'app_mayworkspace',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '5121314',
+	'database' => 'may_studio',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -8,6 +8,7 @@ class Maystudio extends CI_Controller
         {
                 parent::__construct();
                 $this->load->helper('url');
+                $this->load->helper('form');
                 //$this->load->model('studio_model');
         }
         //首页
@@ -51,4 +52,6 @@ class Maystudio extends CI_Controller
                 $this->load->view('episode');
                 $this->load->view('footer');
         }
+
+
 }
