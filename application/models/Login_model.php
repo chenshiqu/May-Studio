@@ -22,12 +22,12 @@ class Login_model extends CI_Model
 	 * 根据用户名查询
 	 * @param $username  string
 	 * 	       
-	 * @return array 一条数组形式的查询结果
+	 * @return array 一条数组形式的查询结果或返回空数组
 	 */
 	public function get_user( $username)
 	{
 		$query=$this->db->get_where('user',array('username'=>$username));
-		return $query->result_array();
+		return $query->row_array();
 	}
 
 }
