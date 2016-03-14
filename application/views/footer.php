@@ -14,7 +14,7 @@
 	<script src="js/<?php echo $value ?>.js" ></script>
 <?php  	}
 } ?>
-<script src="js/signin_validation.js"></script>
+<!-- <script src="js/signin_validation.js"></script> -->
 <script src="js/requestNextAnimationFrame.js"></script>
 <script src="js/sprites.js"></script>
 <script src="js/motion-parallax.js"></script>
