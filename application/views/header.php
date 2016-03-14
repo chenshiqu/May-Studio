@@ -23,9 +23,20 @@
             <li><a href="<?php echo base_url(); ?>index.php/maystudio/stories">故事</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/maystudio/msgboard">留言</a></li>
             <li id="login-nav">
-            	<a id="login">登录</a>
-                ／
-                <a href="<?php echo base_url(); ?>index.php/login/signup" >注册</a>
+            <?php if($this->session->id)
+                        {?>
+                            <a >您好！<?php echo $this->session->username?></a>
+                            /
+                            <a href="<?php echo base_url(); ?>index.php/login/signout">退出</a>
+            <?php } 
+                         else
+                        {  ?>
+                            <a id="login">登录</a>
+                            ／
+                            <a href="<?php echo base_url(); ?>index.php/login/signup" >注册</a>
+                        <?php } ?>
+            	
+                
             </li>
             <!--<li><a href="games.html">游戏</a></li>
             <li><a href="shopping.html">代购</a></li>-->

@@ -10,6 +10,7 @@ class Maystudio extends CI_Controller
                 $this->load->helper('url');
                 $this->load->helper('form');
                 //$this->load->model('studio_model');
+                $this->load->library('session');
         }
         //首页
         public function index()

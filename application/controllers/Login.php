@@ -47,6 +47,11 @@ class Login extends CI_Controller
 		{
 			if(md5($data['password'])==$user['password'])
 			{
+				$session_data=array(
+						'id'=>$user['id'],
+						'username'=>$user['username'],
+						'email'=>$user['email']);
+				$this->session->set_userdata($session_data);
 				echo 2;
 			}
 			else
@@ -58,6 +63,18 @@ class Login extends CI_Controller
 		{
 			echo 0;
 		}
+	}
+
+	public function signout()
+	{
+		unset($_SESSION['id']);
+		unset($_SESSION['username']);
+		unset($_SESSION['email']);
+		session_destroy();
+		$data['css']=array('index','style');
+                	$this->load->view('header',$data);
+                	$this->load->view('index');
+                	$this->load->view('footer');
 	}
 
 	 //注册
