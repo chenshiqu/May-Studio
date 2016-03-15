@@ -1,0 +1,83 @@
+/* CSS Document */
+body{
+	font-size:100%;
+	max-width:1440px;
+	border-top:thick solid black;
+	margin:0;
+}
+
+/*layout*/
+#header{
+	width:100%;
+}
+#header img{
+	display:inline-block;
+	position:relative;
+	top:0.8em;
+	left:1em;
+	margin-right:1em;
+}
+#header h2{
+	display:inline-block;
+}
+
+
+#nav{
+	position:fixed;
+	width:10%;
+	margin:0;
+	padding:0;
+	float:left;
+}
+#nav ul{
+	padding:0;
+	margin:0;
+}
+#nav li{
+	display:block;
+	margin-bottom:1em;
+	padding:0.5em 2em;
+	box-sizing:border-box;
+}
+#nav a{
+	text-decoration:none;
+	color:black;
+	font-size:120%;
+}
+
+
+#content{
+	margin:0;
+	width:85%;
+	float:right;
+}
+.admin-content{
+	margin-bottom:5em;
+}
+.admin-content h3{
+	position:relative;
+	left:-1em;
+}
+label{
+	margin-right:1em;
+}
+/*style*/
+table{
+	border-top:thin solid black;
+	border-bottom:thin solid black;
+}
+table th{
+	border-bottom:thin solid black;
+}
+input[type='submit']{
+	border:none;
+	background-color:black;
+	color:white;
+	border-radius:.5em;
+	padding:.4em .8em;
+	margin-top:1em;
+}
+.active{
+	border-left:thick solid grey;
+	color:grey;
+}
