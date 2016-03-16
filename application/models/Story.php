@@ -43,7 +43,11 @@ class Story extends CI_Model
 	 */
 	public function get_num_rows($table_name,$limit,$offset)
 	{
-		$query=$this->db->get($table_name,$limit,$offset);
+		if($offset=="")
+			$offset=0;
+		$sql="select * from (select * from $table_name order by public_time desc)a limit {$offset},{$limit}";
+		// $query=$this->db->get($table_name,$limit,$offset);
+		$query=$this->db->query($sql);
 		return $query->result_array();
 	}
 }
