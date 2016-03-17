@@ -58,7 +58,10 @@ class Maystudio extends CI_Controller
                         $this->load->view('footer');
                 }
                
-        		//
+                /**
+                 * show the picture 
+                 * @param $id int       the id of the story in the table
+                 */
                 public function episode($id)
                 {
                         $data['css']=array('episode','style');

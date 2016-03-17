@@ -68,11 +68,14 @@
         <div id="stories" class="admin-content">
         	<h3>故事管理</h3>
             <p><strong>发布漫画</strong></p>
-        	<form>
+        	<?php echo form_open_multipart('admin/upload'); ?>
+            <?php if (isset($error)): ?>
+                        <p><?php echo $error ?></p>
+            <?php endif ?>
             	<label for="sto-title">标题</label>
                 <input type="text" id="sto-title" name="sto-title"><br />
                 <label for="cartoon-pic">内容</label>
-                <input type="file" id="cartoon-pic" name="cartoon-pic"><br />
+                <input type="file" id="cartoon-pic" name="cartoon_pic" ><br />
                 <input type="submit" id="new-sto-submit" name="new-sto-submit" value="发布">
             </form>
             <p><strong>管理漫画<strong></p>
