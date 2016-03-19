@@ -9,13 +9,18 @@ class Admin extends CI_Controller
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
+		$this->load->model('story_model');
 	}
 
 	function index()
 	{
-		$this->load->view('admin');
+		$data['stories']=$this->story_model->get_AllStories();
+		$this->load->view('admin',$data);
 	}
 
+	/**
+	 * upload picture
+	 */
 	public function upload()
 	{
 		$config['upload_path']='../images/';
@@ -32,5 +37,10 @@ class Admin extends CI_Controller
 		{
 			$this->load->view('admin');
 		}
+	}
+
+	public function delete($story_id)
+	{
+		$result=$this->story_model->delete_storyByID($story_id);
 	}
 }

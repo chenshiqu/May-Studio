@@ -36,4 +36,25 @@ class Story_model extends CI_Model
 		$query=$this->db->get_where('admin',array('username'=>$author_name));
 		return $quey->row_array();
 	}
+
+	/**
+	 * search the records of the story table
+	 * @return array(0=>{'id'=>,},1=>{'id'=>,})
+	 */
+	public function get_AllStories()
+	{
+		$query=$this->db->get('stories');
+		return $query->result_array();
+	}
+
+	/**
+	 * delete a recode from stories table by id 
+	 * @return bool 
+	 */
+	public function delete_storyById($story_id)
+	{
+		$result=$this->db->delete('stories',array('id'=>$stories_id));
+		return $result;
+	}
+
 }

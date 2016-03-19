@@ -80,32 +80,26 @@
             </form>
             <p><strong>管理漫画<strong></p>
             <table>
-            	<tr>
-                	<th>Title</th>
-                    <th>Publish Date</th>
-                    <th>Operation</th>
-                </tr>
-                <tr>
-                	<td>XXXXXXXXXX</td>
-                    <td>13/03/2016</td>
-                    <td><a href="">Delete</a> <a href="">Top</a></td>
-                </tr>
-                <tr>
-                	<td>XXXXXXXXXX</td>
-                    <td>13/03/2016</td>
-                    <td><a href="">Delete</a> <a href="">Top</a></td>
-                </tr>
-                <tr>
-                	<td>XXXXXXXXXX</td>
-                    <td>13/03/2016</td>
-                    <td><a href="">Delete</a> <a href="">Top</a></td>
-                </tr>
-                <tr>
-                	<td>XXXXXXXXXX</td>
-                    <td>13/03/2016</td>
-                    <td><a href="">Delete</a> <a href="">Top</a></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Publish Date</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($stories as $value) { ?>
+                            <tr>
+                                <td><?php echo $value['title']; ?></td>
+                                <td><?php echo $value['public_time']; ?></td>
+                                <td><a href="index.php/admin/delete/<?php echo $value['id'] ?>">Delete</a> <a href="">Top</a></td>
+                            </tr>    
+                    <?php } ?>
+                </tbody>
+                
             </table>
+            
+            
         </div>
         
         <div id="msgboard" class="admin-content">
