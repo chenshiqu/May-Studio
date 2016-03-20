@@ -12,8 +12,9 @@ class Admin extends CI_Controller
 		$this->load->model('story_model');
 	}
 
-	function index()
+	function index($error="")
 	{
+		$data['error']=$error;
 		$data['stories']=$this->story_model->get_AllStories();
 		$this->load->view('admin',$data);
 	}
@@ -23,24 +24,48 @@ class Admin extends CI_Controller
 	 */
 	public function upload()
 	{
-		$config['upload_path']='../images/';
+		$data['title']=$_POST['sto_title'];
+		$data['author']=1;
+		$picture=$_FILES['cartoon_pic']['name'];
+		$data['picture']=preg_replace("/.jpg$/", "",$picture);
+		$config['upload_path']='../images/stories/';
 		$config['allowed_types']='jpg';
 
 		$this->load->library('upload',$config);
 		if(!$this->upload->do_upload('cartoon_pic'))
 		{
-			$error=array('error'=>$this->upload->display_errors());
-
-			$this->load->view('admin',$error);
+			$error=$this->upload->display_errors();
 		}
 		else
 		{
-			$this->load->view('admin');
+			$result=$this->story_model->insert_story($data);
+			if(!$result)
+			{
+				$error="insert abortively";
+			}
+			else
+			{
+				$error="success";
+			}
+			
 		}
+		redirect("admin/index/$error");
 	}
 
+	/**
+	 * delete story
+	 */
 	public function delete($story_id)
 	{
 		$result=$this->story_model->delete_storyByID($story_id);
+		if(!$result)
+		{
+			$error="delete false";
+		}
+		else
+		{
+			$error="delete success";
+		}
+		redirect("admin/index/$error");
 	}
 }

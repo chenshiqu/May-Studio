@@ -73,7 +73,7 @@
                         <p><?php echo $error ?></p>
             <?php endif ?>
             	<label for="sto-title">标题</label>
-                <input type="text" id="sto-title" name="sto-title"><br />
+                <input type="text" id="sto-title" name="sto_title"><br />
                 <label for="cartoon-pic">内容</label>
                 <input type="file" id="cartoon-pic" name="cartoon_pic" ><br />
                 <input type="submit" id="new-sto-submit" name="new-sto-submit" value="发布">
