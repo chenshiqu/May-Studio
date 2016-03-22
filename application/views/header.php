@@ -4,11 +4,15 @@
 <meta charset="UTF-8">
 <base href="<?php echo base_url(); ?>" />
 <title>MayStudio - Index</title>
-<?php  foreach ($css as $value) {  ?>
-      <link rel="stylesheet" href="css/<?php echo $value ?>.css" />
-<?php } ?>
-<!-- <link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/index.css" /> -->
+<?php 
+            if(isset($css))
+            { 
+                        foreach ($css as $value)
+                        {  ?>
+                                    <link rel="stylesheet" href="css/<?php echo $value ?>.css" />
+<?php              }
+            } ?>
+
 </head>
 
 <body>
@@ -19,21 +23,105 @@
             <li><a href="<?php echo base_url(); ?>index.php/maystudio/stories">故事</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/maystudio/msgboard">留言</a></li>
             <li id="login-nav">
-            	<a id="login">登录</a>
-                ／
-                <a href="<?php echo base_url(); ?>index.php/login/signup" >注册</a>
+            <?php if($this->session->id)
+                        {?>
+                            <a >您好！<?php echo $this->session->username?></a>
+                            /
+                            <a href="<?php echo base_url(); ?>index.php/login/signout">退出</a>
+            <?php } 
+                         else
+                        {  ?>
+                            <a id="login">登录</a>
+                            ／
+                            <a href="<?php echo base_url(); ?>index.php/login/signup" >注册</a>
+                        <?php } ?>
+            	
+                
             </li>
             <!--<li><a href="games.html">游戏</a></li>
             <li><a href="shopping.html">代购</a></li>-->
          </ul>   
          <div id="login-window">
-    		<form method="post" action="">
-        		<label for="username">用户：</label>
-            	<input type="text" id="username" name="username" /><br />
-            	<label for="password">密码：</label>
-            	<input type="password" id="password" name="password" /><br />
-            	<input type="submit" id="login-submit" name="login" /><br />
-            	<a class="signup" href="signup.html">注册新用户</a>
+    	<!-- <form method="post" action=""> -->
+         <script>      //登入ajax验证
+                    function showMessage(value)
+                    {
+                            var url=$('base').attr('href')+"index.php/login/check_username";
+                            $.ajax({
+                                url: url,
+                                type: 'POST',
+                                data: {username: value},
+                            })
+                            .done(function(return_data) {
+                                if(return_data==0)
+                                {
+                                    $('#append').css({
+                                        "padding": 0,
+                                        "margin": 0,
+                                        "color":"red",
+                                        "font-size":10,
+                                        "height":20
+                                    });
+                                    $('#append').html("用户名不存在");
+                                }
+                                else
+                                {
+                                    $('#append').html(' ');
+                                }
+                                console.log(return_data);
+                            })
+                            .fail(function() {
+                                console.log("error");
+                            })
+                            .always(function() {
+                                console.log("complete");
+                            });
+                    }
+
+                    function check()
+                    {
+                        var url=$('base').attr('href')+"index.php/login/signin";
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: {username: $('#username').val(),
+                                        password:$('#password').val()
+                            }
+                        })
+                        .done(function(return_data) {
+                            console.log(return_data);
+                            console.log($('#username').val());
+                            if(return_data==0)
+                            {
+                                alert("用户名不存在");
+                            }
+                            else if(return_data==1)
+                            {
+                                alert("密码错误");
+                            }
+                            else
+                            {
+                                window.location=$('base').attr('href')+"index.php/maystudio/index";
+                            }
+                            
+                        })
+                        .fail(function() {
+                            console.log("error");
+                        })
+                        .always(function() {
+                            console.log("complete");
+                        });
+                        
+                    }
+              </script>
+              <?php echo form_open("login/signin",array('id'=>'signin_form')) ?>
+        	   <label for="username">用户：</label>
+            	   <input type="text" id="username" name="username" onkeyup="showMessage(this.value)" /><br />
+                   <p id="append"></p>
+            	   <label for="password">密码：</label>
+            	   <input type="password" id="password" name="password" /><br />
+            	   <input type="button" id="login_submit" name="login" onclick="check()" /><br />
+            	   <a class="signup" href="<?php echo base_url(); ?>index.php/login/signup">注册新用户</a>
         	</form>
-    	</div>
+        </div>
     </div>

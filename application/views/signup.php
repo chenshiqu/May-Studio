@@ -14,16 +14,16 @@
                 </p>
                 <div id="username-feedback"></div>
                 <p>
-                <label  id="email" for="signup_email">e-mail</label>
-                <input type="text" id="signup_email" name="signup_email" />
-                </p>
-                <p>
                 <label id="password" for="signup_password">密码</label>
                 <input type="password" id="signup_password" name="signup_password" />
                 </p>
                 <p>
                 <label id="confirm_password" for="confirm_password">确认密码</label>
                 <input type="password" id="confirm_password" name="confirm_password" />
+                </p>
+                <p>
+                <label  id="email" for="signup_email">e-mail</label>
+                <input type="text" id="signup_email" name="signup_email" />
                 </p>
                 <input type="submit" id="signup_submit" name="signup_submit" />
             </form>

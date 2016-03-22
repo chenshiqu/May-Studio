@@ -1,8 +1,8 @@
     <section id="content">
     <div id="container">
     	<div class="content-left">
-        	<h1>EP20. 一碗鸡汤</h1>
-            <img src="images/stories/20.jpg" alt="cartoon" width="550" />
+        	<h1>EP20.<?php echo $story['title']  ?></h1>
+            <img src="images/stories/<?php echo $story['picture'] ?>.jpg" alt="cartoon" width="550" />
         </div>
         <div class="content-right">
         	<form class="make-comment">
