@@ -38,6 +38,17 @@ class Story_model extends CI_Model
 	}
 
 	/**
+	 * get a record from stories by id 
+	 * @param $story_id int 
+	 * @return array('id'=>,'title'=>,'picture'=>,'public_time'=>,)
+	 */
+	public function get_storyById($story_id)
+	{
+		$query=$this->db->get_where('stories',array('id'=>$story_id));
+		return $query->row_array();
+	}
+
+	/**
 	 * search the records of the story table
 	 * @return array(0=>{'id'=>,},1=>{'id'=>,})
 	 */
@@ -53,7 +64,9 @@ class Story_model extends CI_Model
 	 */
 	public function delete_storyById($story_id)
 	{
-		$result=$this->db->delete('stories',array('id'=>$stories_id));
+		// $result=$this->db->delete('stories',array('id'=>$stories_id));
+		$sql="delete from stories where id=$story_id";
+		$result=$this->db->query($sql);
 		return $result;
 	}
 

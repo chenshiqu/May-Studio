@@ -53,19 +53,40 @@ class Admin extends CI_Controller
 	}
 
 	/**
-	 * delete story
+	 * delete story through story id
 	 */
 	public function delete($story_id)
 	{
-		$result=$this->story_model->delete_storyByID($story_id);
-		if(!$result)
+		$is_delete=$this->delete_picture($story_id);
+		if($is_delete)
 		{
-			$error="delete false";
+			$result=$this->story_model->delete_storyByID($story_id);
+			if(!$result)
+			{
+				$error="delete false";
+			}
+			else
+			{
+				
+				$error="delete success";
+			}
 		}
 		else
 		{
-			$error="delete success";
+			$error="delete picture false";
 		}
 		redirect("admin/index/$error");
+	}
+
+	/**
+	 * delete picture 
+	 */
+	public function delete_picture($story_id)
+	{
+		$story=$this->story_model->get_storyById($story_id);
+		$picture=$story['picture'].".jpg";
+
+		$result=unlink("../images/stories/$picture");
+		return $picture;
 	}
 }
