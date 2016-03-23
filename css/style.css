@@ -93,6 +93,11 @@ a{
 	font-size:100%;
 	padding:3px 8px;
 }
+
+p#append{
+	height:20px;
+	margin:0;
+}
 /*内容*/
 
 #footer{

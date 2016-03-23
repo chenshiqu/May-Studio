@@ -4,17 +4,16 @@
         	<img src="images/permit.png" alt="maystudio permit" width="300" />
         </div>
         <div class="content-right">
-            <?php if (isset($error)) echo $error; ?>
               <?php echo form_open('login/signup_check','id="signup_form"'); ?>
         	<!-- <form id="signup_form"> -->
             	<h1>注册</h1>
                 <p>
-            	   <label  id="username" for="signup_username">用户名</label>
+            	   <label  id="signup_username" for="signup_username">用户名</label>
                 <input type="text" id="signup_username" name="signup_username" />
                 </p>
                 <div id="username-feedback"></div>
                 <p>
-                <label id="password" for="signup_password">密码</label>
+                <label id="signup_password" for="signup_password">密码</label>
                 <input type="password" id="signup_password" name="signup_password" />
                 </p>
                 <p>
@@ -29,4 +28,7 @@
             </form>
         </div>
     </div>
+        <?php if (isset($error)) { ?>
+                    <script> alert("<?php echo $error ?>")</script>
+        <?php  } ?>
     </section>

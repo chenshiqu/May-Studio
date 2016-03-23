@@ -1,7 +1,7 @@
     <section id="content">
     <div id="container">
     	<div class="content-left">
-        	<h1>EP20.<?php echo $story['title']  ?></h1>
+        	<h1>EP<?php echo $story['picture'].'.'.$story['title']  ?></h1>
             <img src="images/stories/<?php echo $story['picture'] ?>.jpg" alt="cartoon" width="550" />
         </div>
         <div class="content-right">
