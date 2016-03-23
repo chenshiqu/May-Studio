@@ -78,10 +78,14 @@ class Login extends CI_Controller
 	}
 
 	 //注册
-        	public function signup()
+        	public function signup($error="")
         	{
               	$data['css']=array('signup','style');
               	$data['js']=array('signup-validate');
+              	if($error)
+              	{
+              		$data['error']=$error;
+              	}
               	$this->load->view('header',$data);
               	$this->load->view('signup');
               	$this->load->view('footer');
@@ -98,11 +102,8 @@ class Login extends CI_Controller
 		//验证用户名是否存在
 		if(!empty($result))
 		{
-			$message['error']="用户名已存在";
-			$data['css']=array('signup','style');
-			$this->load->view('header',$data);
-			$this->load->view('signup',$message);
-			$this->load->view('footer');
+			$error="用户名已存在";
+			
 		}
 		else
 		{
@@ -114,20 +115,13 @@ class Login extends CI_Controller
 			$result=$this->login_model->insert_user($insert_data);
 			if($result)
 			{
-				$message['error']="注册成功";
-				$data['css']=array('signup','style');
-				$this->load->view('header',$data);
-				$this->load->view('signup',$message);
-				$this->load->view('footer');
+				$error="注册成功";
 			}
 			else
 			{
-				$message['error']='注册失败，数据库操作失败';
-				$data['css']=array('signup','style');
-				$this->load->view('header',$data);
-				$this->load->view('signup',$message);
-				$this->load->view('footer');
+				$error='注册失败，数据库操作失败';
 			}
-		}		
+		}
+		redirect("login/signup/$error");		
 	}
 }
