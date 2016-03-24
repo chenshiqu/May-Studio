@@ -96,9 +96,8 @@
                             </tr>    
                     <?php } ?>
                 </tbody>
-                
             </table>
-            
+            <p><?php echo $this->pagination->create_links();  ?></p> 
             
         </div>
         

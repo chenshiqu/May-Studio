@@ -10,13 +10,32 @@ class Admin extends CI_Controller
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('story_model');
+		$this->load->library('pagination');
 	}
 
 	function index($error="")
 	{
 		$data['error']=$error;
-		$data['stories']=$this->story_model->get_AllStories();
+		$data['stories']=$this->stories();
 		$this->load->view('admin',$data);
+	}
+
+	/**
+	 * get story data
+	 * @return array([0]=>{},[1]=>{},...)
+	 */
+	public function stories()
+	{
+		//configurate pagination class
+		$config['base_url']=base_url()."index.php/admin/index";
+		$config['total_rows']=$this->story_model->count_rows('stories');
+		$config['per_page']=5;
+		$this->pagination->initialize($config);
+		//get offset
+		$offset=$this->uri->segment(3);
+		//get data
+		$result=$this->story_model->get_num_rows('stories',$config['per_page'],$offset);
+		return $result;
 	}
 
 	/**

@@ -70,4 +70,33 @@ class Story_model extends CI_Model
 		return $result;
 	}
 
+	/**
+	 * count the number of the record of the table
+	 * @param $table_name String 
+	 * @return $row_num number
+	 */
+	public function count_rows($table_name)
+	{
+		$row_num=$this->db->count_all($table_name);
+		return $row_num;
+	}
+
+	/**
+	 * get story data by setting offset and limit
+	 * @param $table_name string 
+	 * 	      $limit  number     the number of record will return 
+	 * 	      $offset number    
+	 * @return array 
+	 *      		abs(number)rray([0]=>{'id'=>,'title'=>},[1]=>{})
+	 */
+	public function get_num_rows($table_name,$limit,$offset)
+	{
+		if($offset=="")
+			$offset=0;
+		$sql="select * from (select * from $table_name order by public_time desc)a limit {$offset},{$limit}";
+		// $query=$this->db->get($table_name,$limit,$offset);
+		$query=$this->db->query($sql);
+		return $query->result_array();
+	}
+
 }
