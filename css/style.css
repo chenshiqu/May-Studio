@@ -86,12 +86,14 @@ a{
   padding: 15px;}
   
 #login-submit, input[type="submit"]{
+	display:inline-block;
 	border:none;
 	background-color:#000000;
 	color:#FFFFFF;
 	border-radius:5px;
 	font-size:100%;
 	padding:3px 8px;
+	margin:1em 0;
 }
 
 p#append{
@@ -117,4 +119,9 @@ p#append{
 }
 #content li{
 	display:block;
+}
+/*style*/
+textarea{
+	width:85%;
+	margin:1em 0 0 0;
 }

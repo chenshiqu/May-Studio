@@ -53,6 +53,7 @@ class Maystudio extends CI_Controller
                 public function msgboard()
                 {
                         $data['css']=array('msgboard','style');
+						$data['js']=array('msg-reply');
                         $this->load->view('header',$data);
                         $this->load->view('msgboard');
                         $this->load->view('footer');
