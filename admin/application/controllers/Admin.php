@@ -9,7 +9,7 @@ class Admin extends CI_Controller
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
-		$this->load->model('story_model');
+		$this->load->model(array('story_model','user'));
 		$this->load->library('pagination');
 	}
 
@@ -17,6 +17,7 @@ class Admin extends CI_Controller
 	{
 		$data['error']=$error;
 		$data['stories']=$this->stories();
+		$data['users']=$this->users();
 		$this->load->view('admin',$data);
 	}
 
@@ -35,6 +36,12 @@ class Admin extends CI_Controller
 		$offset=$this->uri->segment(3);
 		//get data
 		$result=$this->story_model->get_num_rows('stories',$config['per_page'],$offset);
+		return $result;
+	}
+
+	public function users()
+	{
+		$result=$this->user->get_AllUsers();
 		return $result;
 	}
 
