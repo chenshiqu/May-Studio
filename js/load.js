@@ -1,5 +1,5 @@
 // 点开导航项时只刷新内容部分
-$('.nav a').on('click',function(){
+/*$('.nav a').click(function(e){
 	e.preventDefault();
 	var url=this.href;
 	
@@ -7,5 +7,5 @@ $('.nav a').on('click',function(){
 	$(this).addClass('current');
 	
 	$('#container').remove();
-	$('#content').load(url+' #container').hide().fadeIn('slow');
-});
+	$('#content').load(url+' #content').hide().fadeIn('slow');
+});*/
