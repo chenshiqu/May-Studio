@@ -84,8 +84,9 @@ a{
   line-height:200%;
   clear: both;
   padding: 15px;}
-  
-#login-submit, input[type="submit"]{
+
+#login_submit, input[type="submit"]{
+
 	display:inline-block;
 	border:none;
 	background-color:#000000;
@@ -124,4 +125,14 @@ p#append{
 textarea{
 	width:85%;
 	margin:1em 0 0 0;
+
+}
+ul{
+	padding:0;
+}
+.pagination{
+	position:absolute;
+	bottom:2em;
+	left:49%;
+
 }
