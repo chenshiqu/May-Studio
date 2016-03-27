@@ -13,18 +13,39 @@
 }
 
 .content-right{
-	width:25%;
+	width:28%;
 	height:100%;
-	float:right;
-	margin-top:30%;
-	margin-right:10%;
+	right:15%;
+	position:fixed;
+}
+.recommendation{
 	border:thin solid black;
 	padding:0 1em;
+	position:relative;
+	width:100%;
+	height:30%;
+	margin-bottom:2em;
+}
+.comment-list{
+	border:thin solid black;
+	padding:0 1em;
+	position:relative;
+	width:100%;
+	max-height:80%;
+	overflow:scroll;
+}
+#comments{
+	position:relative;
+	width:100%;
+}
+.collapse{
+	display:none;
+}
+.unfold{
+	display:block;
 }
 .comment{
 	box-sizing:border-box;
-	height:20%;
-	width:100%;
 	font-size:0.8em;
 	border-bottom:thin solid black;
 	padding-bottom:0.5em;
@@ -41,16 +62,45 @@
 	background-size:auto 100%;
 	padding-left:1em;
 }
-.like{
+.msg{
+	width:100%;
 	font-size:80%;
-	background:url(../images/like.png) left center no-repeat;
+}
+.msg-username{
+	background:url(../images/profile-photo.png) left bottom no-repeat;
+	background-size:auto 100%;
+	padding-left:1em;
+}
+#like{
+	font-size:80%;
 	background-size:auto 100%;
 	padding-left:1.5em;
 	margin-right:1em;
+}
+.like{
+	
+	background:url(../images/like.png) left center no-repeat;
+	
+}
+.liked{
+	background:url(../images/liked.png) left center no-repeat;
 }
 .reply{
 	font-size:80%;
 	background:url(../images/reply.png) left center no-repeat;
 	background-size:auto 100%;
 	padding-left:1.5em;
+}
+#reply-input{
+	display:none;
+	width:100%;
+	margin:0;
+}
+#existed-reply{
+	font-size:80%;
+}
+#reply-submit{
+	display:inline-block;
+	position:relative;
+	bottom:0.4em;
 }

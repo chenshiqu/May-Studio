@@ -66,6 +66,7 @@ class Maystudio extends CI_Controller
                 public function episode($id)
                 {
                         $data['css']=array('episode','style');
+						$data['js']=array('msg-reply','episode-comment');
                         $data['story']=$this->story->get_dataById('stories',$id);
                         $this->load->view('header',$data);
                         $this->load->view('episode');
