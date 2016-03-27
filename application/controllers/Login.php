@@ -84,6 +84,7 @@ class Login extends CI_Controller
               	$data['js']=array('signup-validate');
               	if($error)
               	{
+              		$error=urldecode($error);   //the url is encode,param should be decode before using  
               		$data['error']=$error;
               	}
               	$this->load->view('header',$data);

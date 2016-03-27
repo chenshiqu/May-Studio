@@ -8,12 +8,12 @@
         	<!-- <form id="signup_form"> -->
             	<h1>注册</h1>
                 <p>
-            	   <label  id="signup_username" for="signup_username">用户名</label>
+            	   <label  id="label_username" for="signup_username">用户名</label>
                 <input type="text" id="signup_username" name="signup_username" />
                 </p>
                 <div id="username-feedback"></div>
                 <p>
-                <label id="signup_password" for="signup_password">密码</label>
+                <label id="label_password" for="signup_password">密码</label>
                 <input type="password" id="signup_password" name="signup_password" />
                 </p>
                 <p>

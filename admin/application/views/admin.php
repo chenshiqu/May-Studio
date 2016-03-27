@@ -27,34 +27,28 @@
     	
         <div id="users" class="admin-content">
         	<h3>用户管理</h3>
-            <table>
-            	<tr>
-                	<th>ID</th>
-                	<th>Username</th>
-                	<th>Operation</th>
-                </tr>
-                <tr>
-                	<td>00000</td>
-                    <td>MMMayC</td>
-                    <td><a href="">Delete</a> <a href="">Blacklist</a> <a href="">Elevation</a></td>
-                </tr>
-                <tr>
-                	<td>00000</td>
-                    <td>MMMayC</td>
-                    <td><a href="">Delete</a> <a href="">Blacklist</a> <a href="">Elevation</a></td>
-                </tr>
-                <tr>
-                	<td>00000</td>
-                    <td>MMMayC</td>
-                    <td><a href="">Delete</a> <a href="">Blacklist</a> <a href="">Elevation</a></td>
-                </tr>
-                <tr>
-                	<td>00000</td>
-                    <td>MMMayC</td>
-                    <td><a href="">Delete</a> <a href="">Blacklist</a> <a href="">Elevation</a></td>
-                </tr>
-            </table>
-        </div>
+                <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>E-mail</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($users as $value) { ?>
+                                    <tr>
+                                        <td><?php echo $value['id']; ?></td>
+                                        <td><?php echo $value['username']; ?></td>
+                                        <td><?php echo $value['email'] ?></td>
+                                        <td><a href="">Delete</a> <a href="">Blacklist</a> <a href="">Elevation</a></td>
+                                    </tr>    
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+        
     	
         <div id="index" class="admin-content">
         	<h3>首页管理</h3>
@@ -96,9 +90,8 @@
                             </tr>    
                     <?php } ?>
                 </tbody>
-                
             </table>
-            
+            <p><?php echo $this->pagination->create_links();  ?></p> 
             
         </div>
         
