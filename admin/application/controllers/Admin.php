@@ -39,10 +39,27 @@ class Admin extends CI_Controller
 		return $result;
 	}
 
+	/**
+	 * get users 
+	 */
 	public function users()
 	{
 		$result=$this->user->get_AllUsers();
 		return $result;
+	}
+
+	public function delete_user($id)
+	{
+		$result=$this->user->delete_userById($id);
+		if($result)
+		{
+			$error="delete successfully";
+		}
+		else
+		{
+			$error="delete abortively";
+		}
+		redirect("admin/index");
 	}
 
 	/**
@@ -75,7 +92,7 @@ class Admin extends CI_Controller
 			}
 			
 		}
-		redirect("admin/index/$error");
+		redirect("admin/index");
 	}
 
 	/**
@@ -101,7 +118,7 @@ class Admin extends CI_Controller
 		{
 			$error="delete picture false";
 		}
-		redirect("admin/index/$error");
+		redirect("admin/index");
 	}
 
 	/**
