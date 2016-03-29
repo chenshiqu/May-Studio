@@ -29,4 +29,15 @@ class Base_model extends CI_Model
 		$query=$this->db->get_where($table,array('id'=>$id));
 		return $query->row_array();
 	}
+
+	/**
+	 * count the number of the record of the table
+	 * @param $table_name String 
+	 * @return $row_num number
+	 */
+	public function count_rows($table)
+	{
+		$row_num=$this->db->count_all($table);
+		return $row_num;
+	}
 }
