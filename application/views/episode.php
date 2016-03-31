@@ -16,7 +16,7 @@
         		<form class="make-comment">
             		<p>说点什么：</p>
             		<textarea rows="8"></textarea><br />
-                	<input type="submit" id="comment-submit" name="comment-submit" value="发布" />
+                	<input type="submit" id="comment-submit" name="comment-submit" class="msg_verify" value="发布" />
             	</form>
                 <p >全部评论<a id="all-cmt" href="">［点击展开］</a></p>
             	<div id="comments" class="collapse">

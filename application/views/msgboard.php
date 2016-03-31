@@ -2,10 +2,10 @@
     <div id="container">
     	<div class="content-left leave-message">
         	
-        	<form id="leave-msg">
+           <form id="leave-msg">
             	<p>嘿，朋友！<br />今天的天气好吗？<br />今天的世界好吗？<br />留下你此刻的想法吧...</p>
-            	<textarea id="msg-comment" rows="5"></textarea><br />
-                <input type="submit" value="发布" id="msg-submit" />
+            	<textarea id="msg-comment" rows="5" ></textarea><br />
+                <input type="submit" value="发布" id="msg-submit" class="msg_verify" />
             </form>
         </div>
         <div class="content-right">
