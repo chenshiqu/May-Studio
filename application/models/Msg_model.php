@@ -11,5 +11,14 @@ class Msg_model extends CI_Model
 		$this->load->database();
 	}
 
+	/**
+	 * insert
+	 * @param $data array(
+	 *			'key'=>"value",)
+	 */
 	public function insert($data)
+	{
+		$query=$this->db->insert('mood',$data);
+		return $query;
+	}
 }

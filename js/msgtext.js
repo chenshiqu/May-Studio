@@ -12,10 +12,13 @@ $('input.msg_verify').click(function(e){
 		type: 'POST',
 		async:false
 	})
-	.done(function() {
-		e.preventDefault();
-		alert("please login firstly");
-		console.log("success");
+	.done(function(data) {
+		if(data==0)
+		{
+			e.preventDefault();
+			alert("please login firstly");
+			console.log("success");
+		}
 	})
 	.fail(function() {
 		console.log("error");
@@ -23,4 +26,20 @@ $('input.msg_verify').click(function(e){
 	.always(function() {
 		console.log("complete");
 	});
+});
+
+$('#leave-msg').validate({
+	rules:{
+		msg_comment:{
+			required:true
+		}
+	}
+});
+
+$('.make-comment').validate({
+	rules:{
+		msg_comment:{
+			required:true
+		}
+	}
 });
