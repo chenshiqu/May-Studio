@@ -42,7 +42,7 @@
                                         <td><?php echo $value['id']; ?></td>
                                         <td><?php echo $value['username']; ?></td>
                                         <td><?php echo $value['email'] ?></td>
-                                        <td><a href="">Delete</a> <a href="">Blacklist</a> <a href="">Elevation</a></td>
+                                        <td><a href="index.php/admin/delete_user/<?php echo $value['id'] ?>">Delete</a> <a href="">Blacklist</a> <a href="">Elevation</a></td>
                                     </tr>    
                             <?php } ?>
                         </tbody>

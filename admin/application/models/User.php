@@ -20,4 +20,16 @@ class User extends CI_Model
 		$query=$this->db->get('user');
 		return $query->result_array();
 	}
+
+	/**
+	 * delete user by id 
+	 * @param id int 
+	 * @return boolean
+	 */
+	public function delete_userById($id)
+	{
+		$sql="delete from user where id=$id";
+		$result=$this->db->query($sql);
+		return $result;
+	}
 }

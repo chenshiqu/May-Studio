@@ -66,3 +66,8 @@
 	position:relative;
 	bottom:0.4em;
 }
+
+label.error{
+	display:block;
+	color: red;
+}
