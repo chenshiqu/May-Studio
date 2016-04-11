@@ -16,16 +16,14 @@ class Maystudio extends CI_Controller
                     //首页
                 public function index()
                 {
-                            $data['css']=array('index','style');
-                            $this->load->view('header',$data);
+                            $this->load->view('header');
                             $this->load->view('index');
                             $this->load->view('footer');
                 }
                     //关于我们／联系方式
                 public function about()
                 {
-                             $data['css']=array('stories','style');
-                             $this->load->view('header',$data);
+                             $this->load->view('header');
                              $this->load->view('about');
                              $this->load->view('footer');
                 }
@@ -43,7 +41,6 @@ class Maystudio extends CI_Controller
                             //查询数据库
                             $result=$this->story->get_num_rows('stories',$config['per_page'],$offset);
 
-                            $data['css']=array('stories','style');
                             $data['result']=$result;
                             $this->load->view('header',$data);
                             $this->load->view('stories');
@@ -56,7 +53,6 @@ class Maystudio extends CI_Controller
                  */
                 public function episode($id)
                 {
-                            $data['css']=array('episode','style');
                             $data['js']=array('msg-reply','episode-comment','msgtext');
                             $data['story']=$this->story->get_dataById('stories',$id);
                             $this->load->view('header',$data);
@@ -66,7 +62,6 @@ class Maystudio extends CI_Controller
 				//游戏界面
 				public function game()
                 {
-                            $data['css']=array('game','stories','style');
 							$data['js']=array('game');
                             $this->load->view('header',$data);
                             $this->load->view('game');

@@ -1,8 +1,8 @@
-<div id="content">
-<div class="content-left">
-<div class="play_wrap">	
-<div id="play_area"></div>
-        <div class="play_menu">
+<div id="content" class="content-nb">
+	<div id="container">
+		<div class="content-left">
+			<div id="play_area"></div>
+        	<div class="play_menu">
         	<p>下一个：</p>
             <div id="play_nextType">	
             </div>
@@ -26,9 +26,9 @@
                 </div>
         	<p>分数：<span id="play_score">0</span></p>
         </div>
-    </div>
-</div>
-<div class="content-right">
+    	</div>
+		<div class="content-right">
 	<p>排行榜</p>
 </div>
+	</div>
 </div>

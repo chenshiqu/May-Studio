@@ -4,15 +4,7 @@
 <meta charset="UTF-8">
 <base href="<?php echo base_url(); ?>" />
 <title>MayStudio - Index</title>
-<?php 
-            if(isset($css))
-            { 
-                        foreach ($css as $value)
-                        {  ?>
-                                    <link rel="stylesheet" href="css/<?php echo $value ?>.css" />
-<?php              }
-            } ?>
-
+<link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
@@ -38,10 +30,8 @@
                         <?php } ?>
             	
                 
-            </li>
-            <!--<li><a href="games.html">游戏</a></li>
-            <li><a href="shopping.html">代购</a></li>-->
-         </ul>   
+            </li
+         ></ul>   
          <div id="login-window">
     	<!-- <form method="post" action=""> -->
          <script>      //登入ajax验证
