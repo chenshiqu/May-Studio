@@ -22,6 +22,7 @@
         	<li><a href="<?php echo base_url(); ?>index.php/maystudio/index" class="current"><img class="logo" src="images/logo.png" alt="MayStudio logo" height="47" width="230" />首页</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/maystudio/stories">故事</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/msgboard/index">留言</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/maystudio/game">游戏</a></li>
             <li id="login-nav">
             <?php if($this->session->id)
                         {?>
