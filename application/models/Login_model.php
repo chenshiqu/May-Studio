@@ -30,4 +30,15 @@ class Login_model extends CI_Model
 		return $query->row_array();
 	}
 
+
+	/**
+	 * select user by id 
+	 * @param $id int
+	 * @return array()
+	 */
+	public function get_userById($id)
+	{
+		$query=$this->db->get_where('user',array('id'=>$id));
+		return $query->row_array();
+	}
 }

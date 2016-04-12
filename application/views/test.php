@@ -5,6 +5,10 @@
 	<title>test</title>
 </head>
 <body>
-	<?php echo $content ?>
+	<?php echo $content;
+		echo $position; ?>
+	<?php //echo var_dump($descendant); ?>
+	 <?php //echo var_dump($descendant) ?>
+
 </body>
 </html>
