@@ -17,6 +17,7 @@ class Msgboard extends CI_Controller
               }
 
 	//留言版
+
             	public function index()
             	{
                             $data['css']=array('msgboard','style');
@@ -24,6 +25,11 @@ class Msgboard extends CI_Controller
                             $data['mood']=$this->show_mood();
                             $data['descendant']=$this->get_descendant($data['mood']);
                             // $this->load->view('test',$data);
+              }  
+            public function index()
+            {
+                        $data['js']=array('msg-reply','msgtext');
+                        
 	              $this->load->view('header',$data);
 	              $this->load->view('msgboard');
 	              $this->load->view('footer');

@@ -4,15 +4,7 @@
 <meta charset="UTF-8">
 <base href="<?php echo base_url(); ?>" />
 <title>MayStudio - Index</title>
-<?php 
-            if(isset($css))
-            { 
-                        foreach ($css as $value)
-                        {  ?>
-                                    <link rel="stylesheet" href="css/<?php echo $value ?>.css" />
-<?php              }
-            } ?>
-
+<link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
@@ -22,6 +14,7 @@
         	<li><a href="<?php echo base_url(); ?>index.php/maystudio/index" class="current"><img class="logo" src="images/logo.png" alt="MayStudio logo" height="47" width="230" />首页</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/maystudio/stories">故事</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/msgboard/index">留言</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/maystudio/game">游戏</a></li>
             <li id="login-nav">
             <?php if($this->session->id)
                         {?>
@@ -37,10 +30,8 @@
                         <?php } ?>
             	
                 
-            </li>
-            <!--<li><a href="games.html">游戏</a></li>
-            <li><a href="shopping.html">代购</a></li>-->
-         </ul>   
+            </li
+         ></ul>   
          <div id="login-window">
     	<!-- <form method="post" action=""> -->
          <script>      //登入ajax验证

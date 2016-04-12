@@ -80,7 +80,7 @@ class Login extends CI_Controller
 	 //注册
         	public function signup($error="")
         	{
-              	$data['css']=array('signup','style');
+              	$data['css']=array('style');
               	$data['js']=array('signup-validate');
               	if($error)
               	{
