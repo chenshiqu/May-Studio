@@ -12,7 +12,7 @@ class Msgboard extends CI_Controller
 	              $this->load->helper($helper);
 	              $library=array('session');
 	              $this->load->library($library);
-                            $model=array('msg_model','login_model');
+                     $model=array('msg_model','login_model');
 	              $this->load->model($model);
               }
 
@@ -20,20 +20,15 @@ class Msgboard extends CI_Controller
 
             	public function index()
             	{
-                            $data['css']=array('msgboard','style');
                             $data['js']=array('msg-reply','msgtext');
                             $data['mood']=$this->show_mood();
                             $data['descendant']=$this->get_descendant($data['mood']);
                             // $this->load->view('test',$data);
+                            $this->load->view('header',$data);
+                            $this->load->view('msgboard');
+                            $this->load->view('footer');
               }  
-            public function index()
-            {
-                        $data['js']=array('msg-reply','msgtext');
-                        
-	              $this->load->view('header',$data);
-	              $this->load->view('msgboard');
-	              $this->load->view('footer');
-            	}
+
 	/**
 	* verify if the user has logined 
 	* @return 0 represent the user do not login

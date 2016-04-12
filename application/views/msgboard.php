@@ -20,7 +20,7 @@
                 <div id="reply-input">
                         <?php echo form_open("msgboard/reply") ?>
                 	<textarea rows="2" name="text"></textarea>
-                	<input type="submit" value="OK" id="reply-submit">
+                	<input type="submit" value="OK" id="reply-submit" class="reply-submit">
                             <input type="hidden" id="parent_id" name="parent_id" value="<?php echo $mood['id'] ?>">
                         </form>
                 </div>
@@ -38,14 +38,6 @@
                                                 </p>
                                     </div>
                         <?php endforeach ?>
-                        <!-- <div class="reply-box">
-                    	<p><strong class="reply-username">伯里曼</strong>：所有人体轮廓测量都是通过把人体分为各个部分来测量的。<a  class="reply-reply" href="">回复</a></p>
-                        
-                        </div> -->
-                        <!-- <div class="reply-box">
-                    	<p><strong class="reply-username">周作人</strong> 回复 <strong>伯里曼</strong>：日光底下无新事，已有的事后必再有，已行的事后必再行。<a class="reply-reply" href="">回复</a></p>
-                        
-                        </div> -->
                 </div>
             </div>
         </div>

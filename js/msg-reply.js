@@ -4,50 +4,73 @@ $(document).ready(function(e) {
 	$('#like').click(function(e){
 		var $this=$(this);
 		e.preventDefault();
+
+		$.ajax({
+			url: 'index.php/Msgboard/getSession',
+			type: 'POST',
+			async:false
+		})
+		.done(function(data) {
+			if(data==0)
+			{
+				alert("please login firstly");
+				console.log("success");
+			}
+			else
+			{
+				if($this.attr("class")==="like"){
+					$this.removeClass('like');
+					$this.addClass('liked');
+
+					//update favour
+					var url="index.php/msgboard/increase_favour";
+					$.ajax({
+						url: url,
+						type: 'POST',
+						data: {mood_id: $('.mood_id').attr('value')},
+					})
+					.done(function(data) {
+						$('#favour_number').html(data);
+						console.log(data);
+					})
+					.fail(function(data) {
+						console.log(data);
+					})
+					.always(function() {
+						console.log("complete");
+					});
+				}else{
+					$this.removeClass('liked');
+					$this.addClass('like');
+
+					//update favour
+					var url="index.php/msgboard/down_favour";
+					$.ajax({
+						url: url,
+						type: 'POST',
+						data: {mood_id: $('.mood_id').attr('value')},
+					})
+					.done(function(data) {
+						$('#favour_number').html(data);
+						console.log(data);
+					})
+					.fail(function(data) {
+						console.log(data);
+					})
+					.always(function() {
+						console.log("complete");
+					});
+				}
+			}
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
 		
-		if($this.attr("class")==="like"){
-			$this.removeClass('like');
-			$this.addClass('liked');
 
-			//update favour
-			var url="index.php/msgboard/increase_favour";
-			$.ajax({
-				url: url,
-				type: 'POST',
-				data: {mood_id: $('.mood_id').attr('value')},
-			})
-			.done(function(data) {
-				$('#favour_number').html(data);
-				console.log(data);
-			})
-			.fail(function(data) {
-				console.log(data);
-			})
-			.always(function() {
-				console.log("complete");
-			});
-		}else{
-			$this.removeClass('liked');
-			$this.addClass('like');
-
-			//update favour
-			var url="index.php/msgboard/down_favour";
-			$.ajax({
-				url: url,
-				type: 'POST',
-				data: {mood_id: $('.mood_id').attr('value')},
-			})
-			.done(function(data) {
-				$('#favour_number').html(data);
-				console.log(data);
-			})
-			.fail(function(data) {
-				console.log(data);
-			})
-			.always(function() {
-				console.log("complete");
-			});
-		}
 		
 	});
 	//});
