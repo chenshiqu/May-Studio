@@ -1,4 +1,4 @@
-    <section id="content">
+    <section id="content" class="content-nb">
     	<div id="container">
     		<div class="content-left">
         		              <ul>

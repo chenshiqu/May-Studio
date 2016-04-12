@@ -18,7 +18,6 @@ class Msgboard extends CI_Controller
 	//留言版
             public function index()
             {
-                        $data['css']=array('msgboard','style');
                         $data['js']=array('msg-reply','msgtext');
 	              $this->load->view('header',$data);
 	              $this->load->view('msgboard');
