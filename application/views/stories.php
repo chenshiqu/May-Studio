@@ -1,4 +1,4 @@
-    <section id="content" class="content-nb">
+    <div id="content" class="content-nb">
     	<div id="container">
     		<div class="content-left">
         		              <ul>
@@ -28,4 +28,4 @@
         	              </div>
                           <div><?php echo $this->pagination->create_links(); ?></div>
     	</div>
-    </section>
+    </div>

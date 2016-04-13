@@ -1,4 +1,4 @@
-    <section id="content" class="content-nb">
+    <div id="content" class="content-nb">
     <div id="container">
     	<div class="content-left leave-message">
         	
@@ -36,4 +36,4 @@
             </div>
         </div>
     </div>
-    </section>
+    </div>

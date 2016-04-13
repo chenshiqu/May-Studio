@@ -19,6 +19,7 @@ class Msgboard extends CI_Controller
             public function index()
             {
                         $data['js']=array('msg-reply','msgtext');
+						$data["current"]="msgboard";
 	              $this->load->view('header',$data);
 	              $this->load->view('msgboard');
 	              $this->load->view('footer');

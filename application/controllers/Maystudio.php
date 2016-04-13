@@ -16,7 +16,8 @@ class Maystudio extends CI_Controller
                     //首页
                 public function index()
                 {
-                            $this->load->view('header');
+                            $data["current"]="index";
+							$this->load->view('header',$data);
                             $this->load->view('index');
                             $this->load->view('footer');
                 }
@@ -42,6 +43,7 @@ class Maystudio extends CI_Controller
                             $result=$this->story->get_num_rows('stories',$config['per_page'],$offset);
 
                             $data['result']=$result;
+							$data["current"]="stories";
                             $this->load->view('header',$data);
                             $this->load->view('stories');
                             $this->load->view('footer');
@@ -63,6 +65,7 @@ class Maystudio extends CI_Controller
 				public function game()
                 {
 							$data['js']=array('game');
+							$data["current"]="game";
                             $this->load->view('header',$data);
                             $this->load->view('game');
                             $this->load->view('footer');
