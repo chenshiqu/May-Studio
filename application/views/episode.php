@@ -1,4 +1,4 @@
-    <section id="content" class="content-episode">
+    <div id="content" class="content-episode">
     <div id="container">
     	<div class="content-left">
         	<h1>EP<?php echo $story['picture'].'.'.$story['title']  ?></h1>
@@ -51,4 +51,4 @@
             </div>
         </div>
     </div>
-    </section>
+    </div>

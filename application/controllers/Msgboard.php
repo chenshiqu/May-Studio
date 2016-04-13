@@ -18,9 +18,11 @@ class Msgboard extends CI_Controller
 
 	//留言版
 
+
             	public function index()
             	{
                             $data['js']=array('msg-reply','msgtext');
+                            $data['current']="msgboard";
                             $data['mood']=$this->show_mood();
                             $data['descendant']=$this->get_descendant($data['mood']);
                             // $this->load->view('test',$data);
@@ -47,22 +49,22 @@ class Msgboard extends CI_Controller
         	}
 
             	/**
-             	* update msg
-             	*/
-            	public function insert()
-            	{
-                        	$data['user_id']=$this->session->id;
-                        	$data['content']=$_POST['msg_comment'];
-                        	$query=$this->msg_model->insert($data);
-                        	if($query)
-                        	{
-                                    	redirect("msgboard/index");
-                        	}      
-                        	else
-                        	{
-                            	$this->load->view("test",$data);
-                        	}    
-            	}
+              * update msg
+              */
+             public function insert()
+             {
+                         $data['user_id']=$this->session->id;
+                         $data['content']=$_POST['msg_comment'];
+                         $query=$this->msg_model->insert($data);
+                         if($query)
+                         {
+                                     redirect("msgboard/index");
+                         }      
+                         else
+                         {
+                                     $this->load->view("test",$data);
+                         }    
+             }
 
                 /**
                  * 

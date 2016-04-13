@@ -1,4 +1,4 @@
-    <section id="content" class="content-signup">
+    <div id="content" class="content-signup">
     <div id="container">
     	<div class="content-left">
         	<img src="images/permit.png" alt="maystudio permit" width="300" />
@@ -26,9 +26,9 @@
                 </p>
                 <input type="submit" id="signup_submit" name="signup_submit" />
             </form>
-        </div>
-    </div>
-        <?php if (isset($error)) { ?>
+        </div><?php if (isset($error)) { ?>
                     <script> alert("<?php echo $error ?>")</script>
         <?php  } ?>
-    </section>
+    </div>
+        
+    </div>

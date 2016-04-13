@@ -1,4 +1,4 @@
-<section id="content" class="content-nb">
+<div id="content" class="content-nb">
     <div id="container">
     	<div class="content-left">
         	<h1>About Us</h1>
@@ -17,4 +17,4 @@
             <p>(打开微信“扫一扫”，扫描上面二维码关注)</p>
         </div>
     </div>
-    </section>
+</div>
