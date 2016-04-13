@@ -17,9 +17,9 @@ class Comment_model extends CI_Model
          * get the newest comment
          * @return array()
          */
-        public function get_last()
+        public function get_last($story_id)
         {
-                $sql="select * from comment where post_time=(select max(post_time) from comment where parent_id=0) ";
+                $sql="select * from comment where post_time=(select max(post_time) from comment where parent_id=0 and story_id=$story_id) ";
                 $query=$this->db->query($sql);
                 return $query->row_array();
         }

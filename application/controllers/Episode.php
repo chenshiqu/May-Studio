@@ -20,7 +20,8 @@ class Episode extends CI_Controller
         {
                 $data['js']=array('msg-reply','episode-comment','msgtext');
                 $data['story']=$this->story->get_dataById('stories',$id);
-                $data['comment']=$this->show();
+                $data['comment']=$this->show($id);
+                $data['current']="story";
                 $this->load->view('header',$data);
                 $this->load->view('episode');
                 $this->load->view('footer');
@@ -36,13 +37,17 @@ class Episode extends CI_Controller
                 redirect($url);
         }
 
-        public function show()
+        public function show($story_id)
         {
-                $comment=$this->comment_model->get_last();
-                $user=$this->login_model->get_userById($comment['user_id']);
-                $data=$comment;
-                $data['username']=$user['username'];
-                $data['type']="comment";
+                $data=array();
+                $comment=$this->comment_model->get_last($story_id);
+                if($comment)
+                {
+                        $user=$this->login_model->get_userById($comment['user_id']);
+                        $data=$comment;
+                        $data['username']=$user['username'];
+                        $data['type']="comment";
+                }
                 return $data;
         }
 
