@@ -29,22 +29,22 @@ class Msgboard extends CI_Controller
                             $this->load->view('footer');
               }  
 
-	/**
-	* verify if the user has logined 
-	* @return 0 represent the user do not login
-	* 	      1 represent the user has logined 
-	 */
-	public function getSession()
-	{
-	            	if($this->session->id)
-	            	{
-	            		echo 1;
-	            	}
-	            	else
-	            	{
-	            	 	echo 0;
-	            	}
-	}
+        	/**
+        	* verify if the user has logined 
+        	* @return 0 represent the user do not login
+        	* 	      1 represent the user has logined 
+        	 */
+        	public function getSession()
+        	{
+        	            	if($this->session->id)
+        	            	{
+        	            		echo 1;
+        	            	}
+        	            	else
+        	            	{
+        	            	 	echo 0;
+        	            	}
+        	}
 
             	/**
              	* update msg

@@ -77,9 +77,15 @@ $(document).ready(function(e) {
 	
 	/*reply*/
     	$('.reply').click(function(e){
+    		var $this=$(this)
 		e.preventDefault();
+
+		var replyId=$this.prev().val();
+		$('#parent_id').val(replyId);
+
 		$('#reply-input textarea').html("");
 		$('#reply-input').toggle("fast");
+		
 	});
 	
 	$('.reply-reply').click(function(e){
