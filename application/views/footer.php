@@ -3,6 +3,7 @@
         <a href="<?php echo base_url(); ?>index.php/maystudio/about">About</a>
         <a href="<?php echo base_url(); ?>index.php/maystudio/about">Contact</a>
     </div>
+    
 </div>
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/jquery.js"></script>

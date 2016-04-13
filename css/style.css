@@ -357,12 +357,12 @@ label.error{
 	float:left;
 	width:14px;
 	height:14px;
-	border:1px solid #fff;
+	border:1px solid transparent;
 	margin:-1px 0 0 -1px;
 }
 .play_menu .play_mini_cell.active{
-	background:#999;
-	border:1px solid #ccc;
+	background:black;
+	border:1px solid white;
 }
 .play_menu p{
 	line-height:200%;
@@ -370,20 +370,14 @@ label.error{
 }
 .play_menu a.play_btn{
 	display:block;
-	margin-bottom:20px;
-	width:80px;
-	height:28px;
-	line-height:28px;
+	border:none;
+	background-color:#000000;
+	color:#FFFFFF;
+	border-radius:5px;
+	font-size:100%;
+	padding:3px 8px;
+	margin:1em 0;
 	text-align:center;
-	text-decoration:none;
-	color:#333;
-	background:#fefefe;
-	border:1px solid #eee;
-	border-radius: 2px;
-	box-shadow: 1px 1px 2px #eee;
-	border-color: #ddd #d2d2d2 #d2d2d2 #ddd;
-	outline:none;
-    -moz-outline:none;
 }
 .play_menu a.play_btn:hover{
 	background-color: #fcfcfc;
