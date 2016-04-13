@@ -23,43 +23,88 @@ $(document).ready(function(e) {
 					$this.addClass('liked');
 
 					//update favour
-					var url="index.php/msgboard/increase_favour";
-					$.ajax({
-						url: url,
-						type: 'POST',
-						data: {mood_id: $('.mood_id').attr('value')},
-					})
-					.done(function(data) {
-						$('#favour_number').html(data);
-						console.log(data);
-					})
-					.fail(function(data) {
-						console.log(data);
-					})
-					.always(function() {
-						console.log("complete");
-					});
-				}else{
+					if($this.attr('name')=="mood")
+					{
+						$.ajax({
+							url: "index.php/msgboard/increase_favour",
+							type: 'POST',
+							data: {mood_id: $('.mood_id').attr('value')},
+							async:false
+						})
+						.done(function(data) {
+							$('#favour_number').html(data);
+							console.log(data);
+						})
+						.fail(function(data) {
+							console.log(data);
+						})
+						.always(function() {
+							console.log($this.attr('name'));
+						});
+					}
+					else
+					{
+						$.ajax({
+							url: "index.php/episode/up_favour",
+							type: 'POST',
+							data: {comment_id: $('.comment_id').attr('value')},
+							async:false
+						})
+						.done(function(data) {
+							$('#favour_number').html(data);
+							console.log(data);
+						})
+						.fail(function(data) {
+							console.log(data);
+						})
+						.always(function() {
+							console.log($this.attr('name'));
+						});
+					}
+				}
+				else{
 					$this.removeClass('liked');
 					$this.addClass('like');
 
 					//update favour
-					var url="index.php/msgboard/down_favour";
-					$.ajax({
-						url: url,
-						type: 'POST',
-						data: {mood_id: $('.mood_id').attr('value')},
-					})
-					.done(function(data) {
-						$('#favour_number').html(data);
-						console.log(data);
-					})
-					.fail(function(data) {
-						console.log(data);
-					})
-					.always(function() {
-						console.log("complete");
-					});
+					if($this.attr('name')=="mood")
+					{
+						$.ajax({
+							url: "index.php/msgboard/down_favour",
+							type: 'POST',
+							data: {mood_id: $('.mood_id').attr('value')},
+							async:false
+						})
+						.done(function(data) {
+							$('#favour_number').html(data);
+							console.log(data);
+						})
+						.fail(function(data) {
+							console.log(data);
+						})
+						.always(function() {
+							console.log($this.attr('name'));
+						});
+					}
+					else
+					{
+						$.ajax({
+							url: "index.php/episode/down_favour",
+							type: 'POST',
+							data: {comment_id: $('.comment_id').attr('value')},
+							async:false
+						})
+						.done(function(data) {
+							$('#favour_number').html(data);
+							console.log(data);
+						})
+						.fail(function(data) {
+							console.log(data);
+						})
+						.always(function() {
+							console.log($this.attr('name'));
+						});
+					}
 				}
 			}
 		})
@@ -67,7 +112,7 @@ $(document).ready(function(e) {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			console.log($this.attr('name'));
 		});
 		
 

@@ -96,6 +96,7 @@ class Msgboard extends CI_Controller
                             $user=$this->login_model->get_userById($result['user_id']);
                             $data=$result;
                             $data['username']=$user['username'];
+                            $data['type']="mood";
                             return $data;
             	}
 

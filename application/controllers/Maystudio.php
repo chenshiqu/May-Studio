@@ -59,8 +59,8 @@ class Maystudio extends CI_Controller
                             $this->load->view('episode');
                             $this->load->view('footer');
                 }
-				//游戏界面
-				public function game()
+	   //游戏界面
+                public function game()
                 {
 							$data['js']=array('game');
                             $this->load->view('header',$data);

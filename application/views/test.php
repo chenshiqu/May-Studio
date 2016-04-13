@@ -5,10 +5,7 @@
 	<title>test</title>
 </head>
 <body>
-	<?php echo $content;
-		echo $position; ?>
-	<?php //echo var_dump($descendant); ?>
-	 <?php //echo var_dump($descendant) ?>
+        <?php var_dump($mood) ?>
 
 </body>
 </html>

@@ -14,7 +14,7 @@
         	<div class="msg">
             	<p class="msg-username"><strong><?php echo $mood['username']; ?></strong></p>
                 <p class="msg-content"><?php echo $mood['content']; ?></p>
-                <a href="" id="like" class="like">赞(<span id="favour_number"><?php echo $mood['favour'] ?></span>)</a>
+                <a href="" id="like" class="like" name="<?php echo $mood['type']; ?>">赞(<span id="favour_number"><?php echo $mood['favour']; ?></span>)</a>
                 <input type="hidden" class="mood_id" value=" <?php echo $mood['id'] ?>">
                 <a href="" class="reply">回复</a><br />
                 <div id="reply-input">
