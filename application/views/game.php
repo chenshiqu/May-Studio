@@ -23,6 +23,7 @@
         	<p>Score: </p>
             <p><span id="play_score">0</span></p>
             <a id="play_btn_start" class="play_btn" href="javascript:void(0);" unselectable="on">开始</a>
+            <a id="play_rst" class="play_btn" href="javascript:void(0);" unselectable="on">重置</a>
         </div>
     	</div>
 		<div class="content-right">

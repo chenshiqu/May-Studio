@@ -67,7 +67,7 @@ a{
 	cursor:pointer;
 }
 /*modal-window*/
-.modal {
+.modal, #alert_box {
   position: absolute;
   z-index: 1000;
   padding: 10px;
@@ -85,7 +85,7 @@ a{
   clear: both;
   padding: 15px;}
 
-#login_submit, input[type="submit"]{
+#login_submit, input[type="submit"], .alert_button{
 
 	display:inline-block;
 	border:none;
@@ -352,7 +352,7 @@ label.error{
 	width:60px;
 	height:60px;
 	padding:1px 0 0 1px;
-	margin:10px 0 20px 00px;
+	margin:0.5em 0 .5em 0;
 }
 .play_menu .play_mini_cell{
 	float:left;
@@ -403,4 +403,13 @@ label.error{
 	border-bottom:medium double black;
 	margin-bottom:.3em;
 	font-size:120%;
+}
+
+.alert_button{
+	margin-left:2em;
+	margin-right:2em;
+}
+#alert_box{
+	top:40%;
+	left:20%;
 }
