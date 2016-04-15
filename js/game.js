@@ -72,7 +72,7 @@ Tetris.prototype = {
 		var self = this;
 		
 		this.e_startBtn.click(function(){
-			self.e_levelMenu.hide();
+			/*self.e_levelMenu.hide();*/
 			if(self.playing){
 				self.pause();
 			}else if(self.death){
@@ -82,13 +82,16 @@ Tetris.prototype = {
 				self.play();
 			}
 		});
-		this.e_levelBtn.click(function(){
+		/*this.e_levelBtn.click(function(){
 			if(self.playing) return;
 			self.e_levelMenu.toggle();
-		});
+		});*/
 		this.e_levelMenu.find("a").click(function(){
-			self.e_levelMenu.hide();
-			self.e_levelBtn.find(".level_text").html($(this).html())
+			if(self.playing) return;
+			/*self.e_levelMenu.hide();*/
+			/*self.e_levelBtn.find(".level_text").html($(this).html());*/
+			$(".level_menu li a").removeClass("current_level");
+			$(this).addClass("current_level");
 			self.setOptions({
 				"level": $(this).attr("level")
 			});
