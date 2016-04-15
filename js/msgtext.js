@@ -1,3 +1,4 @@
+//输入前检查是否登陆
 $('textarea').click(function(e){
 	$.post('index.php/Msgboard/getSession', function(data) {
 		if (data==0) {
@@ -7,6 +8,28 @@ $('textarea').click(function(e){
 });
 
 $('input.msg_verify').click(function(e){
+	$.ajax({
+		url: 'index.php/Msgboard/getSession',
+		type: 'POST',
+		async:false
+	})
+	.done(function(data) {
+		if(data==0)
+		{
+			e.preventDefault();
+			alert("please login firstly");
+			console.log("success");
+		}
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+});
+
+$('input.reply-submit').click(function(e){
 	$.ajax({
 		url: 'index.php/Msgboard/getSession',
 		type: 'POST',

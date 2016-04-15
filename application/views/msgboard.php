@@ -12,26 +12,32 @@
         </div>
         <div class="content-right">
         	<div class="msg">
-            	<p class="msg-username"><strong>阿西莫夫</strong></p>
-                <p class="msg-content">有时候他会迷失在那些古老的世界里，在那里人们生老病死，一切自然；在那里做出来的事覆水难收；在那里罪恶无法预防，幸福也无法规划，滑铁卢战役打输了，就真的作为败战永留史册。有一首他很喜欢的诗说道，亲手写下的字句，永远也不可能被抹去。</p>
-                <a href="" id="like" class="like">赞</a>
+            	<p class="msg-username"><strong><?php echo $mood['username']; ?></strong></p>
+                <p class="msg-content"><?php echo $mood['content']; ?></p>
+                <a href="" id="like" class="like" name="<?php echo $mood['type']; ?>">赞(<span id="favour_number"><?php echo $mood['favour']; ?></span>)</a>
+                <input type="hidden" class="mood_id" value=" <?php echo $mood['id'] ?>">
                 <a href="" class="reply">回复</a><br />
                 <div id="reply-input">
-                	<textarea rows="2"></textarea>
-                	<input type="submit" value="OK" id="reply-submit">
+                        <?php echo form_open("msgboard/reply") ?>
+                	<textarea rows="2" name="text"></textarea>
+                	<input type="submit" value="OK" id="reply-submit" class="reply-submit">
+                            <input type="hidden" id="parent_id" name="parent_id" value="<?php echo $mood['id'] ?>">
+                        </form>
                 </div>
                 <div id="existed-reply">
-                	<div id="like-by">
-                    	<p><strong>周作人</strong>、<strong>伯里曼</strong>赞了这则留言</p>
-                    </div>
-                	<div class="reply-box">
-                    	<p><strong class="reply-username">伯里曼</strong>：所有人体轮廓测量都是通过把人体分为各个部分来测量的。<a  class="reply-reply" href="">回复</a></p>
-                        
-                    </div>
-                    <div class="reply-box">
-                    	<p><strong class="reply-username">周作人</strong> 回复 <strong>伯里曼</strong>：日光底下无新事，已有的事后必再有，已行的事后必再行。<a class="reply-reply" href="">回复</a></p>
-                        
-                    </div>
+                        <div id="like-by">
+                    	<!-- <p><strong>周作人</strong>、<strong>伯里曼</strong>赞了这则留言</p> -->
+                        </div>
+                        <?php foreach ($descendant as $key => $value): ?>
+                                    <div>
+                                                <p>
+                                                        <input type="hidden" value="<?php echo $value['id']; ?>">
+                                                        <strong class="reply-username"> <?php echo $value['username'] ?></strong>回复<strong><?php echo $value['parent_name'] ?></strong>
+                                                        :<?php echo $value['content']; ?>
+                                                        <a class="reply-reply" href="">回复</a>
+                                                </p>
+                                    </div>
+                        <?php endforeach ?>
                 </div>
             </div>
         </div>

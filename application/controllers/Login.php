@@ -71,25 +71,27 @@ class Login extends CI_Controller
 		unset($_SESSION['username']);
 		unset($_SESSION['email']);
 		session_destroy();
-		$data['css']=array('index','style');
-                	$this->load->view('header',$data);
-                	$this->load->view('index');
-                	$this->load->view('footer');
+		// $data['css']=array('index','style');
+  //               		$this->load->view('header',$data);
+  //               		$this->load->view('index');
+  //               		$this->load->view('footer');
+		redirect("/maystudio/index");
 	}
 
 	 //注册
         	public function signup($error="")
         	{
-              	$data['css']=array('style');
-              	$data['js']=array('signup-validate');
-              	if($error)
-              	{
-              		$error=urldecode($error);   //the url is encode,param should be decode before using  
-              		$data['error']=$error;
-              	}
-              	$this->load->view('header',$data);
-              	$this->load->view('signup');
-              	$this->load->view('footer');
+	              	$data['css']=array('style');
+	              	$data['js']=array('signup-validate');
+	              	if($error)
+	              	{
+	              		$error=urldecode($error);   //the url is encode,param should be decode before using  
+	              		$data['error']=$error;
+	              	}
+	              	$data['current']="index";
+	              	$this->load->view('header',$data);
+	              	$this->load->view('signup');
+              		$this->load->view('footer');
         	}
 
 	/**

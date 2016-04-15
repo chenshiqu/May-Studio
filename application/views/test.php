@@ -5,6 +5,7 @@
 	<title>test</title>
 </head>
 <body>
-	<?php echo $content ?>
+        <?php var_dump($mood) ?>
+
 </body>
 </html>
