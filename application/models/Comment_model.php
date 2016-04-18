@@ -30,6 +30,23 @@ class Comment_model extends CI_Model
                 return $query->row_array();
         }
 
+        public function get_commentByParentId($parent_id)
+        {
+                $query=$this->db->get_where('comment',array('parent_id'=>$parent_id));
+                return $query->result_array();
+        }
+
+        /**
+         * get all the comment belong to story whose id is $story_id
+         *@return array(array(),array())
+         */
+        public function get_commentByStoryId($story_id)
+        {
+                $sql="select * from (select * from comment order by post_time desc)a where story_id=$story_id";
+                $query=$this->db->query($sql);
+                return $query->result_array();
+        }
+
         /**
          * update favour
          * @param $id int 
@@ -44,6 +61,16 @@ class Comment_model extends CI_Model
         public function down_favour($id)
         {
                 $sql="update comment set favour=favour-1 where id=$id";
+                $query=$this->db->query($sql);
+                return $query;
+        }
+
+        /**
+         * update the child state
+         */
+        public function updateChild($id)
+        {
+                $sql="update comment set child=1 where id=$id";
                 $query=$this->db->query($sql);
                 return $query;
         }

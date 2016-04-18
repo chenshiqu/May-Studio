@@ -1,7 +1,7 @@
 // JavaScript Document
 $(document).ready(function(e) {
 	/*like*/
-	$('#like').click(function(e){
+	$('a#like').click(function(e){
 		var $this=$(this);
 		e.preventDefault();
 
@@ -28,7 +28,7 @@ $(document).ready(function(e) {
 						$.ajax({
 							url: "index.php/msgboard/increase_favour",
 							type: 'POST',
-							data: {mood_id: $('.mood_id').attr('value')},
+							data: {mood_id: $this.next('.mood_id').attr('value')},
 							async:false
 						})
 						.done(function(data) {
@@ -47,11 +47,11 @@ $(document).ready(function(e) {
 						$.ajax({
 							url: "index.php/episode/up_favour",
 							type: 'POST',
-							data: {comment_id: $('.comment_id').attr('value')},
+							data: {comment_id: $this.next('.comment_id').attr('value')},
 							async:false
 						})
 						.done(function(data) {
-							$('#favour_number').html(data);
+							$this.find('#favour_number').html(data);
 							console.log(data);
 						})
 						.fail(function(data) {
@@ -72,7 +72,7 @@ $(document).ready(function(e) {
 						$.ajax({
 							url: "index.php/msgboard/down_favour",
 							type: 'POST',
-							data: {mood_id: $('.mood_id').attr('value')},
+							data: {mood_id: $this.next('.mood_id').attr('value')},
 							async:false
 						})
 						.done(function(data) {
@@ -91,11 +91,11 @@ $(document).ready(function(e) {
 						$.ajax({
 							url: "index.php/episode/down_favour",
 							type: 'POST',
-							data: {comment_id: $('.comment_id').attr('value')},
+							data: {comment_id: $this.next('.comment_id').attr('value')},
 							async:false
 						})
 						.done(function(data) {
-							$('#favour_number').html(data);
+							$this.find('#favour_number').html(data);
 							console.log(data);
 						})
 						.fail(function(data) {
@@ -128,8 +128,10 @@ $(document).ready(function(e) {
 		var replyId=$this.prev().val();
 		$('#parent_id').val(replyId);
 
-		$('#reply-input textarea').html("");
-		$('#reply-input').toggle("fast");
+		//$('#reply-input textarea').html("");
+		//$('#reply-input').toggle("fast");
+		$this.parent().find('textarea').html("");
+		$this.parent().find('div#reply-input').toggle('fast');
 		
 	});
 	
@@ -140,9 +142,12 @@ $(document).ready(function(e) {
 		$('#reply-input').css({"display":"block"});
 		var subject=$this.parent().find("strong").html();
 		var replyId=$this.parent().find('input').val();
-		$('#reply-input textarea').html("回复"+subject+":");
-		$('#parent_id').val(replyId);
-						
+		console.log(replyId);
+		//$('#reply-input textarea').html("回复"+subject+":");
+		//$('#parent_id').val(replyId);
+		var $reply=$this.parent().parent().parent().parent();
+		$reply.find('#reply-input textarea').html("回复"+subject+":");
+		$reply.find('#parent_id').val(replyId);				
 	});
 
 });

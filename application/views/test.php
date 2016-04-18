@@ -5,7 +5,7 @@
 	<title>test</title>
 </head>
 <body>
-        <?php var_dump($mood) ?>
+        <?php var_dump($comment) ?>
 
 </body>
 </html>

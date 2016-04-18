@@ -30,8 +30,8 @@
                         <?php } ?>
             	
                 
-            </li
-         ></ul>   
+            </li>
+            </ul>   
          <div id="login-window">
     	<!-- <form method="post" action=""> -->
          <script>      //登入ajax验证
