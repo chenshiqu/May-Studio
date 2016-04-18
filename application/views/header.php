@@ -111,7 +111,7 @@
                    <p id="append"></p>
             	   <label for="password">密码：</label>
             	   <input type="password" id="password" name="password" /><br />
-            	   <input type="button" id="login_submit" name="login" onclick="check()" /><br />
+            	   <input type="button" id="login_submit" name="login" onclick="check()" value="登录"/><br />
             	   <a class="signup" href="<?php echo base_url(); ?>index.php/login/signup">注册新用户</a>
         	</form>
         </div>

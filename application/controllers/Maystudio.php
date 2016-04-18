@@ -24,7 +24,8 @@ class Maystudio extends CI_Controller
                     //关于我们／联系方式
                 public function about()
                 {
-                             $this->load->view('header');
+                             $data["current"]=" ";
+							 $this->load->view('header',$data);
                              $this->load->view('about');
                              $this->load->view('footer');
                 }
