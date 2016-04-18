@@ -2,6 +2,7 @@
 var Tetris = function(options){
 	this.e_playArea = $("#play_area");
 	this.e_startBtn = $("#play_btn_start");
+	this.e_rstBtn=$("#play_rst");
 	this.e_playScore = $("#play_score");
 	this.e_playDirection = $("#play_direction");
 	this.e_levelBtn = $("#play_btn_level");
@@ -72,7 +73,7 @@ Tetris.prototype = {
 		var self = this;
 		
 		this.e_startBtn.click(function(){
-			self.e_levelMenu.hide();
+			/*self.e_levelMenu.hide();*/
 			if(self.playing){
 				self.pause();
 			}else if(self.death){
@@ -82,18 +83,21 @@ Tetris.prototype = {
 				self.play();
 			}
 		});
-		this.e_levelBtn.click(function(){
-			if(self.playing) return;
-			self.e_levelMenu.toggle();
-		});
+		
 		this.e_levelMenu.find("a").click(function(){
-			self.e_levelMenu.hide();
-			self.e_levelBtn.find(".level_text").html($(this).html())
+			if(self.playing) return;
+			$(".level_menu li a").removeClass("current_level");
+			$(this).addClass("current_level");
 			self.setOptions({
 				"level": $(this).attr("level")
 			});
-			//alert(self.interval[self.level])
-		})
+		});
+		this.e_rstBtn.click(function(){
+			/*self.death=true;
+			self.pause();
+			self.resetArea();*/
+			self.gameAlert("人生这么艰难，哪由得你说重来就重来😏");
+		});
 	},
 	play:function(){
 		var self = this;
@@ -321,9 +325,17 @@ Tetris.prototype = {
 	gameOver:function(){
 		this.death = true;
 		this.pause();
+		this.gameAlert("Game Over了，别难过，人生还长嘛😏");
 		return;
+	},
+	gameAlert:function(cont){
+		var html='<div id="alert_box"><div id="alert_cont">'+cont+'</div><a href="javascript:void(0);" class="alert_button">好吧！</a><a href="javascript:void(0);" class="alert_button">傻逼！</a></div>';
+		$('body').append(html);
+		$('.alert_button').click(function(){
+			$('#alert_box').remove();
+		});
 	}
-}
+};
 $(document).ready(function(e) {
 	var t = new Tetris();
 });
