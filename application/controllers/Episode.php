@@ -6,7 +6,7 @@ class Episode extends CI_Controller
                 parent::__construct();
                 $model=array('story','comment_model','login_model');
                 $this->load->model($model);
-                $helper=array('url','form');
+                $helper=array('url','form','descendant');
                 $this->load->helper($helper);
                 $library=array('pagination','session');
                 $this->load->library($library);
@@ -22,10 +22,10 @@ class Episode extends CI_Controller
                 $data['story']=$this->story->get_dataById('stories',$id);
                 $data['comment']=$this->show($id);
                 $data['current']="story";
-                // $this->load->view('header',$data);
-                // $this->load->view('episode');
-                // $this->load->view('footer');
-                $this->load->view('test',$data);
+                $this->load->view('header',$data);
+                $this->load->view('episode');
+                $this->load->view('footer');
+                // $this->load->view('test',$data);
         }
 
         /**
@@ -119,6 +119,8 @@ class Episode extends CI_Controller
                                 $data[$key]['type']="comment";
                                 //$data[$key]['descentant']=$this->get_descendant($value);                                
                         }
+
+                        //形成树形结构数组
                         foreach ($data as $key => $value) 
                         {
                                 $data[$key]['descendant']=$this->get_descendant($value);

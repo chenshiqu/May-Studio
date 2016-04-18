@@ -139,14 +139,17 @@ $(document).ready(function(e) {
 		var $this=$(this);
 		e.preventDefault();
 		
-		$('#reply-input').css({"display":"block"});
+		// $('#reply-input').css({"display":"block"});
 		var subject=$this.parent().find("strong").html();
+		console.log(subject);
 		var replyId=$this.parent().find('input').val();
 		console.log(replyId);
 		//$('#reply-input textarea').html("回复"+subject+":");
 		//$('#parent_id').val(replyId);
-		var $reply=$this.parent().parent().parent().parent();
-		$reply.find('#reply-input textarea').html("回复"+subject+":");
+		var $reply=$this.parent().parent().parent().prev();
+		$reply.css({"display":"block"});
+		// $reply.find('#reply-input textarea').html("回复"+subject+":");
+		$reply.find('textarea').html("回复"+subject+":");
 		$reply.find('#parent_id').val(replyId);				
 	});
 

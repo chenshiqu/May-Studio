@@ -40,16 +40,10 @@
                                                             </form>
                                                     </div>
                                                     <div id="existed-reply">
-                                                        <div id="like-by">
+                                                        <!-- <div id="like-by">
                                                                 <p><strong>周作人</strong>、<strong>伯里曼</strong>赞了这则评论</p>
-                                                        </div>
-                                                        <div class="reply-box">
-                                                                <p><strong class="reply-username">伯里曼</strong>：所有人体轮廓测量都是通过把人体分为各个部分来测量的。<a  class="reply-reply" href="">回复</a></p>
-                                                
-                                                        </div>
-                                                        <div class="reply-box">
-                                                            <p><strong class="reply-username">周作人</strong> 回复 <strong>伯里曼</strong>：日光底下无新事，已有的事后必再有，已行的事后必再行。<a class="reply-reply" href="">回复</a></p>
-                                                        </div>
+                                                        </div> -->
+                                                        <?php descendant_show($value['descendant']); ?>
                                                     </div>
                                             </div>
                                     <?php endforeach ?>

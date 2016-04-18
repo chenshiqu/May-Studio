@@ -42,7 +42,7 @@ class Comment_model extends CI_Model
          */
         public function get_commentByStoryId($story_id)
         {
-                $sql="select * from (select * from comment order by post_time desc)a where story_id=$story_id";
+                $sql="select * from (select * from comment order by post_time desc)a where story_id=$story_id and parent_id=0";
                 $query=$this->db->query($sql);
                 return $query->result_array();
         }
