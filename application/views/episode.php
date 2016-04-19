@@ -23,33 +23,31 @@
                             </form>
                 <p >全部评论<a id="all-cmt" href="">［点击展开］</a></p>
             	<div id="comments" class="collapse">
-                	<div class="msg">
-                                        <?php if (!empty($comment)): ?>
-                                                <p class="msg-username"><strong><?php echo $comment['username'] ?></strong></p>
-                                                <p class="msg-content"><?php echo $comment['content'] ?></p>
-                                                <a href="" id="like" class="like" name="<?php echo $comment['type'] ?>">赞(<span id="favour_number"><?php echo $comment['favour'] ?></span>)</a>
-                                                                  <input type="hidden" class="comment_id" value="<?php echo $comment['id'] ?>">
-                                                <a href="" class="reply">回复</a><br />
-                                                <div id="reply-input">
-                                                    <textarea rows="2"></textarea>
-                                                    <input type="submit" value="OK" id="reply-submit" class="msg_verify">
-                                                </div>
-                                                <div id="existed-reply">
-                                                    <div id="like-by">
-                                                        <p><strong>周作人</strong>、<strong>伯里曼</strong>赞了这则评论</p>
+                            <?php if (!empty($comment)): ?>
+                                    <?php foreach ($comment as $key => $value): ?>
+                                            <div class="msg">
+                                                    <p class="msg-username"><strong><?php echo $value['username'] ?></strong></p>
+                                                    <p class="msg-content"><?php echo $value['content'] ?></p>
+                                                    <a href="" id="like" class="like" name="<?php echo $value['type'] ?>">赞(<span id="favour_number"><?php echo $value['favour'] ?></span>)</a>
+                                                    <input type="hidden" class="comment_id" value="<?php echo $value['id'] ?>">
+                                                    <a href="" class="reply">回复</a><br />
+                                                    <div id="reply-input">
+                                                            <?php echo form_open("/episode/reply") ?>
+                                                                <textarea rows="2" name="text"></textarea>
+                                                                <input type="submit" value="OK" id="reply-submit" class="msg_verify">
+                                                                <input type="hidden" id="parent_id" name="parent_id" value="<?php echo $value['id'] ?>">
+                                                                <input type="hidden" name="story_id" value="<?php echo $story['id'] ?>">
+                                                            </form>
                                                     </div>
-                                                    <div class="reply-box">
-                                                        <p><strong class="reply-username">伯里曼</strong>：所有人体轮廓测量都是通过把人体分为各个部分来测量的。<a  class="reply-reply" href="">回复</a></p>
-                                                
+                                                    <div id="existed-reply">
+                                                        <!-- <div id="like-by">
+                                                                <p><strong>周作人</strong>、<strong>伯里曼</strong>赞了这则评论</p>
+                                                        </div> -->
+                                                        <?php descendant_show($value['descendant']); ?>
                                                     </div>
-                                                    <div class="reply-box">
-                                                        <p><strong class="reply-username">周作人</strong> 回复 <strong>伯里曼</strong>：日光底下无新事，已有的事后必再有，已行的事后必再行。<a class="reply-reply" href="">回复</a></p>
-                                                
-                                                    </div>
-                                                </div>
-                                        <?php endif ?>
-            			
-            		</div>
+                                            </div>
+                                    <?php endforeach ?>
+                            <?php endif ?>
             	</div>
             </div>
         </div>

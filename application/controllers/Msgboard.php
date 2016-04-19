@@ -167,14 +167,4 @@ class Msgboard extends CI_Controller
                             $query=$this->msg_model->get_moodById($mood_id);
                             echo $query['favour'];
               }
-
-              function test()
-              {
-                           $content="回复:脱下常日的假面，奔向梦幻的疆界";
-                           $position=strpos($content,":");
-                           $content=substr($content,$position+1);
-                           $data['content']=$content;
-                           $data['position']=$position;
-                           $this->load->view('test',$data);
-              }
 }
