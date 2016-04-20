@@ -53,15 +53,18 @@ var Tetris = function(options){
 	this.start();
 };
 Tetris.prototype = {
+	//start the game, ->init, menu, control
 	start:function(){
 		this.init();
 		this.menu();
 		this.control();
 	},
+	//set the difficulty options
 	setOptions:function(options){
 		this.score = options.score === 0 ? options.score : (options.score|| this.score);
 		this.level = options.level === 0 ? options.level : (options.level|| this.level);
 	},
+	//clear the grid and set score as 0
 	resetArea:function(){
 		$(".play_cell.active").removeClass("active");
 		this.setOptions({
@@ -69,6 +72,9 @@ Tetris.prototype = {
 		});
 		this.e_playScore.html(this.score);
 	},
+	//start button -> play/pause/reset
+	//level button -> setOptions
+	//reset button -> pause, resetArea
 	menu:function(){
 		var self = this;
 		
@@ -93,12 +99,21 @@ Tetris.prototype = {
 			});
 		});
 		this.e_rstBtn.click(function(){
-			// self.death=true;
-			// self.pause();
-			// self.resetArea();
-			self.gameAlert("人生这么艰难，哪由得你说重来就重来😏");
+			var ran=Math.random();
+			if(ran<0.2){
+				self.gameAlert("人生这么艰难，哪由得你说重来就重来😏");
+			}else{
+				self.pause();
+				self.resetArea();
+				clearInterval(self.timer);
+				self.preTetris = [];
+				self.tetrisType = self.nextType;
+				self.nextType = self.tetrisTypeArr[Math.floor(self.tetrisTypeArr.length * Math.random())];
+				self.showNextType();
+			}
 		});
 	},
+	//-> showTetris, nextTetris
 	play:function(){
 		var self = this;
 		this.e_startBtn.html("暂停");
@@ -114,12 +129,13 @@ Tetris.prototype = {
 		}
 		
 	},
+	//
 	pause:function(){
 		this.e_startBtn.html("开始")
 		this.playing = false;
 		clearTimeout(this.timer);
 	},
-	//initiation
+	//initiation, ->showNextType
 	init:function(){
 		var self = this, _ele, _miniEle, _arr = [];
 		//build the grid
@@ -150,6 +166,8 @@ Tetris.prototype = {
 		this.showNextType();
 		
 	},
+	//keydown event
+	//-> drive
 	control:function(){
 		var self = this;
 		$("html").keydown(function(e){
@@ -176,6 +194,7 @@ Tetris.prototype = {
 			return false;
 		})
 	},
+	//change the direction of current tetris
 	changTetris:function(){
 		var _len = this.tetrisArr[this.tetrisType[0]].length;
 		if(this.tetrisType[1] < _len-1){
@@ -184,6 +203,8 @@ Tetris.prototype = {
 			this.tetrisType[1] = 0;
 		}
 	},
+	//inplement the function of control
+	//->changTetris
 	drive:function(){
 		switch (this.direction) {
 			case "left":
@@ -202,6 +223,8 @@ Tetris.prototype = {
 		}
 		this.showTetris(this.direction);
 	},
+	//show tetris in the grid
+	//-> tetrisDown
 	showTetris:function(dir){
 		var _tt = this.tetrisArr[this.tetrisType[0]][this.tetrisType[1]],
 		_ele,self=this;
@@ -248,6 +271,8 @@ Tetris.prototype = {
 		}
 		this.preTetris = this.thisTetris.slice(0);
 	},
+	//judge whether levels are full -> getScore
+	//if tetris touch the top layer -> gameOver
 	tetrisDown:function(){
 		clearInterval(this.timer);
 		var _index;
@@ -274,6 +299,7 @@ Tetris.prototype = {
 		}
 		this.nextTetris();
 	},
+	//get next type of tetris randomly, ->showNextType, showTetris
 	nextTetris:function(){
 		var self = this;
 		clearInterval(this.timer);
@@ -288,6 +314,7 @@ Tetris.prototype = {
 			self.showTetris();
 		},this.interval[this.level]);
 	},
+	//show next type of tetris in the menu
 	showNextType:function(){
 		var _nt = this.tetrisArr[this.nextType[0]][this.nextType[1]],_ele,_index;
 		this.e_nextType.find(".active").removeClass("active");
@@ -301,6 +328,7 @@ Tetris.prototype = {
 			_ele.addClass("active");
 		}
 	},
+	//calculate the score
 	getScore:function(){
 		var self = this;
 		for(var i = this.fullArr.length-1; i>=0; i--){
@@ -322,6 +350,7 @@ Tetris.prototype = {
 		this.fullArr = [];
 		this.nextTetris();
 	},
+	//-> pause
 	gameOver:function(){
 		this.death = true;
 		this.pause();
@@ -348,6 +377,7 @@ Tetris.prototype = {
 		this.gameAlert("Game Over了，别难过，人生还长嘛😏");
 		return;
 	},
+	//pop the alert box
 	gameAlert:function(cont){
 		var html='<div id="alert_box"><div id="alert_cont">'+cont+'</div><a href="javascript:void(0);" class="alert_button">好吧！</a><a href="javascript:void(0);" class="alert_button">傻逼！</a></div>';
 		$('body').append(html);
