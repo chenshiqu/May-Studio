@@ -102,7 +102,7 @@ Tetris.prototype = {
 			var ran=Math.random();
 			if(ran<0.5){
 				self.pause();
-				self.gameAlert("人生这么艰难，哪由得你说重来就重来😏");
+				self.gameAlert("人生这么艰难，你说重来就重来？😏");
 			}else{
 				self.pause();
 				self.resetArea();
@@ -279,6 +279,7 @@ Tetris.prototype = {
 	tetrisDown:function(){
 		clearInterval(this.timer);
 		var _index;
+		var ran=Math.random();
 		this.turning = false;
 		forOuter:
 		for(var j = 0, jlen = this.preTetris.length; j<jlen; j++){
@@ -296,9 +297,14 @@ Tetris.prototype = {
 		}
 		for(var i = 6; i<9; i++){
 			if(this.cellArr[i].hasClass("active")){
-				this.gameOver();
+				this.gameOver("没关系，人生还长嘛！😏");
 				return;
 			}
+		}
+		
+		if(ran<0.01){
+			this.gameOver("不知道为什么，game over了，人生就是这么艰难。😏");
+			return;
 		}
 		this.nextTetris();
 	},
@@ -354,7 +360,7 @@ Tetris.prototype = {
 		this.nextTetris();
 	},
 	//-> pause
-	gameOver:function(){
+	gameOver:function(over_alert){
 		this.death = true;
 		this.pause();
 		
@@ -377,7 +383,7 @@ Tetris.prototype = {
 			console.log("complete");
 		});
 		
-		this.gameAlert("Game Over了，别难过，人生还长嘛😏");
+		this.gameAlert(over_alert);
 		return;
 	},
 	//pop the alert box
