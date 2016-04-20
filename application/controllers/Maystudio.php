@@ -7,7 +7,8 @@ class Maystudio extends CI_Controller
                 function __construct()
                 {
                             parent::__construct();
-                            $this->load->model('story');
+                            $model=array('story','game_model','login_model');
+                            $this->load->model($model);
                             $helper=array('url','form');
                             $this->load->helper($helper);
                             $library=array('pagination','session');
@@ -62,11 +63,37 @@ class Maystudio extends CI_Controller
                             $this->load->view('episode');
                             $this->load->view('footer');
                 }
-	   //游戏界面
+	 //   //游戏界面
                 public function game()
                 {
-							$data['js']=array('game');
-							$data["current"]="game";
+                            //配置分页设置
+                            $config['base_url']=base_url()."index.php/maystudio/game";
+                            $config['total_rows']=$this->game_model->count_rows('game');
+                            $config['per_page']=3;
+                            $this->pagination->initialize($config);
+
+                            //获取偏移量
+                            $offset=$this->uri->segment(3);
+                            if($offset=="")
+                            {
+                                    $offset=0;
+                            }
+
+                            //获取数据
+                            $result=$this->game_model->get_num_rows('game',$config['per_page'],$offset);
+                            $game=array();
+                            foreach ($result as $key => $value) 
+                            {
+                                    $game[$key]=$value;
+                                    $user=$this->login_model->get_userById($value['user_id']);
+                                    $game[$key]['username']=$user['username'];
+                                    $game[$key]['rank']=$offset+$key+1;
+                            }
+                            // var_dump($game);
+                            $data['game']=$game;
+		
+                            $data['js']=array('game');
+		$data["current"]="game";
                             $this->load->view('header',$data);
                             $this->load->view('game');
                             $this->load->view('footer');

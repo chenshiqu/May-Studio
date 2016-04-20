@@ -93,9 +93,9 @@ Tetris.prototype = {
 			});
 		});
 		this.e_rstBtn.click(function(){
-			/*self.death=true;
-			self.pause();
-			self.resetArea();*/
+			// self.death=true;
+			// self.pause();
+			// self.resetArea();
 			self.gameAlert("人生这么艰难，哪由得你说重来就重来😏");
 		});
 	},
@@ -325,6 +325,26 @@ Tetris.prototype = {
 	gameOver:function(){
 		this.death = true;
 		this.pause();
+		
+		//get and upload score
+		var play_score=$('#play_score').html();
+		$.ajax({
+			url: 'index.php/game/insert',
+			type: 'POST', 
+			data: {score:play_score},
+			//async:false,
+		})
+		.done(function(return_data) {
+			console.log(return_data);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log(play_score);
+			console.log("complete");
+		});
+		
 		this.gameAlert("Game Over了，别难过，人生还长嘛😏");
 		return;
 	},
