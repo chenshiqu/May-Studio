@@ -100,13 +100,16 @@ Tetris.prototype = {
 		});
 		this.e_rstBtn.click(function(){
 			var ran=Math.random();
-			if(ran<0.2){
+			if(ran<0.5){
+				self.pause();
 				self.gameAlert("人生这么艰难，哪由得你说重来就重来😏");
 			}else{
 				self.pause();
 				self.resetArea();
 				clearInterval(self.timer);
 				self.preTetris = [];
+				self.offsetRow = -2;
+				self.offsetCol = 7;
 				self.tetrisType = self.nextType;
 				self.nextType = self.tetrisTypeArr[Math.floor(self.tetrisTypeArr.length * Math.random())];
 				self.showNextType();
@@ -379,9 +382,10 @@ Tetris.prototype = {
 	},
 	//pop the alert box
 	gameAlert:function(cont){
-		var html='<div id="alert_box"><div id="alert_cont">'+cont+'</div><a href="javascript:void(0);" class="alert_button">好吧！</a><a href="javascript:void(0);" class="alert_button">傻逼！</a></div>';
+		var html='<div id="alert_background"></div><div id="alert_box"><div id="alert_cont">'+cont+'</div><a href="javascript:void(0);" class="alert_button">好吧！</a><a href="javascript:void(0);" class="alert_button">傻逼！</a></div>';
 		$('body').append(html);
 		$('.alert_button').click(function(){
+			$('#alert_background').remove();
 			$('#alert_box').remove();
 		});
 	}
