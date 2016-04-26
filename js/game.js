@@ -16,14 +16,16 @@ var Tetris = function(options){
 	this.score = 0;
 	this.direction = "bottom";
 	this.timer = null;
-	this.interval = [600,300,100];
+	this.interval = [600,300,100,50];
 	this.levelScore = [10,20,40];
 	this.doubleScore = [1,4,10,20];
 	this.level = 1;
+	this.tempLevel=1;
 	
 	this.playing = false;
 	this.turning = false;
 	this.death = false;
+	this.rabbit=false;
 	
 	this.offsetCol = Math.floor(this.cellCol/2);
 	this.offsetRow = -3;
@@ -268,9 +270,15 @@ Tetris.prototype = {
 		};
 		for(var j=0, jlen = this.preTetris.length; j<jlen; j++){
 			this.preTetris[j].removeClass("active");
+			if(this.rabbit===true){
+				this.preTetris[j].removeClass("rabbit");
+			}
 		}
 		for(var k=0, klen = this.thisTetris.length; k<klen; k++){
 			this.thisTetris[k].addClass("active");
+			if(this.rabbit===true){
+				this.thisTetris[k].addClass("rabbit");
+			}
 		}
 		this.preTetris = this.thisTetris.slice(0);
 	},
@@ -281,6 +289,7 @@ Tetris.prototype = {
 		var _index;
 		var ran=Math.random();
 		this.turning = false;
+		
 		forOuter:
 		for(var j = 0, jlen = this.preTetris.length; j<jlen; j++){
 			_index = $.inArray(this.preTetris[j],this.cellArr);
@@ -290,6 +299,33 @@ Tetris.prototype = {
 				}
 			}
 			if($.inArray(_index - _index%this.cellCol,this.fullArr)<0) this.fullArr.push(_index - _index%this.cellCol);
+		}
+		if(this.rabbit===true){
+			this.level=this.tempLevel;
+			/*console.log(this.level);
+			$("#desc").remove();
+			this.gameDesc("嘭！");
+			console.log($("#desc").html());*/
+			$("#description p").remove();
+			$("#description").html("<p>嘭！</p>");
+			console.log($("#description").html());
+			this.sleep(1000);
+			this.rabbit=false;
+			/*$("#desc").remove();*/
+			/*this.gameDesc("一个胖子的力量...");*/
+			$("#description").empty();
+			$("#description").html("<p>一个胖子的力量...</p>");
+			console.log($("#description").html());
+			$(".play_cell.active").removeClass("active");
+			$(".play_cell.rabbit").removeClass("rabbit");
+			this.sleep(1000);
+			/*$("#desc").remove();*/
+			$("#description").empty();
+			this.score += 500;
+			this.e_playScore.html(this.score); 
+			this.fullArr = [];
+			this.nextTetris();
+			return;
 		}
 		if(this.fullArr.length){
 			this.getScore();
@@ -301,8 +337,8 @@ Tetris.prototype = {
 				return;
 			}
 		}
-		
-		if(ran<0.01){
+		//end the game for no reason with 0.1% probability
+		if(ran<0.001){
 			this.gameOver("不知道为什么，game over了，人生就是这么艰难。😏");
 			return;
 		}
@@ -318,6 +354,16 @@ Tetris.prototype = {
 		this.tetrisType = this.nextType;
 		this.nextType = this.tetrisTypeArr[Math.floor(this.tetrisTypeArr.length * Math.random())];
 		this.showNextType();
+		//generate a rabbit tetris with 0.5% probability
+		if(Math.random()>0.5){
+			this.rabbit=true;
+		}
+		if(this.rabbit){
+			this.tempLevel=this.level;
+			this.level=3;
+			/*this.gameDesc("啊...");*/
+			$("#description").append("<p>啊...</p>");
+		}
 		this.timer = setInterval(function(){
 			self.offsetRow++;
 			self.showTetris();
@@ -337,21 +383,27 @@ Tetris.prototype = {
 			_ele.addClass("active");
 		}
 	},
+	sleep:function(n) { //n表示的毫秒数
+            var start = new Date().getTime();
+            while (true){ if (new Date().getTime() - start > n) break};
+    },
 	//calculate the score
 	getScore:function(){
 		var self = this;
+		
 		for(var i = this.fullArr.length-1; i>=0; i--){
 			for(var j = 0; j<this.cellCol; j++){
 				this.cellArr[j+this.fullArr[i]].removeClass("active");
-					if(j == this.cellCol-1){
-						for(var k = this.fullArr[i]; k>=0; k--){
+				
+				if(j === this.cellCol-1){
+					for(var k = this.fullArr[i]; k>=0; k--){
 						if(this.cellArr[k].hasClass("active")){
-							this.cellArr[k].removeClass("active");
-							this.cellArr[k + this.cellCol].addClass("active");
+						this.cellArr[k].removeClass("active");
+						this.cellArr[k + this.cellCol].addClass("active");
 						}
 					}
 				}
-			}
+			}this.sleep(500);
 			
 		}
 		this.score += this.levelScore[this.level]*this.doubleScore[this.fullArr.length-1];
@@ -384,6 +436,7 @@ Tetris.prototype = {
 		});
 		
 		this.gameAlert(over_alert);
+		this.resetArea();
 		return;
 	},
 	//pop the alert box
@@ -394,7 +447,11 @@ Tetris.prototype = {
 			$('#alert_background').remove();
 			$('#alert_box').remove();
 		});
-	}
+	},
+	/*gameDesc:function(cont){
+		var html='<div id="desc">'+cont+'</div>';
+		$('#play_area').append(html);
+	}*/
 };
 $(document).ready(function(e) {
 	var t = new Tetris();

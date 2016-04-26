@@ -1,7 +1,7 @@
 <div id="content" class="content-nb">
 	<div id="container">
 		<div class="content-left">
-			<div id="play_area"></div>
+			<div id="play_area"><div id="description"></div></div>
         	                           <div class="play_menu">
                 	                   <p>Next: </p>
                                                 <div id="play_nextType">	
