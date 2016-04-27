@@ -425,7 +425,10 @@ Tetris.prototype = {
 			//async:false,
 		})
 		.done(function(return_data) {
-			console.log(return_data);
+                                                                                   if(!return_data)
+                                                                                   {
+                                                                                        alert("请登入");
+                                                                                   }
 		})
 		.fail(function() {
 			console.log("error");

@@ -36,7 +36,7 @@ class Maystudio extends CI_Controller
                             //配置分页设置
                             $config['base_url']=base_url()."index.php/maystudio/stories";
                             $config['total_rows']=$this->story->count_rows('stories');
-                            $config['per_page']=10;
+                            $config['per_page']=30;
                             $this->pagination->initialize($config);
 
                             //获取偏移量
@@ -66,30 +66,18 @@ class Maystudio extends CI_Controller
 	 //   //游戏界面
                 public function game()
                 {
-                            //配置分页设置
-                            $config['base_url']=base_url()."index.php/maystudio/game";
-                            $config['total_rows']=$this->game_model->count_rows('game');
-                            $config['per_page']=3;
-                            $this->pagination->initialize($config);
-
-                            //获取偏移量
-                            $offset=$this->uri->segment(3);
-                            if($offset=="")
-                            {
-                                    $offset=0;
-                            }
 
                             //获取数据
-                            $result=$this->game_model->get_num_rows('game',$config['per_page'],$offset);
+                            $result=$this->game_model->getTop('game');
                             $game=array();
                             foreach ($result as $key => $value) 
                             {
                                     $game[$key]=$value;
                                     $user=$this->login_model->get_userById($value['user_id']);
                                     $game[$key]['username']=$user['username'];
-                                    $game[$key]['rank']=$offset+$key+1;
+                                    $game[$key]['rank']=$key+1;
                             }
-                            // var_dump($game);
+                            //var_dump($game);
                             $data['game']=$game;
 		
                             $data['js']=array('game');
