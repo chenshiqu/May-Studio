@@ -176,19 +176,27 @@ Tetris.prototype = {
 	control:function(){
 		var self = this;
 		$("html").keydown(function(e){
-			if(!self.playing) return !self.playing;
+			
 			switch (e.keyCode) {
 				case 37:
 					self.direction = "left";
+					if(!self.playing) return !self.playing;
 					break;
 				case 38:
 					self.direction = "top";
+					if(!self.playing) return !self.playing;
 					break;
 				case 39:
 					self.direction = "right";
+					if(!self.playing) return !self.playing;
 					break;
 				case 40:
 					self.direction = "bottom";
+					if(!self.playing) return !self.playing;
+					break;
+				case 32:
+					self.direction = "start";
+					console.log("start");
 					break;
 				default:
 					return;
@@ -214,6 +222,7 @@ Tetris.prototype = {
 		switch (this.direction) {
 			case "left":
 				if(this.offsetCol > 0) this.offsetCol --;
+				console.log("left");
 				break;
 			case "top":
 				this.changTetris();
@@ -223,6 +232,16 @@ Tetris.prototype = {
 				break;
 			case "bottom":
 				if(this.offsetRow < this.cellRow-2) this.offsetRow ++;
+				break;
+			case "start":
+				console.log("start");
+				if(this.playing){
+					this.pause();
+					console.log("pause");
+				}else{
+					this.play();
+					console.log("play");
+				}
 				break;
 			default:break;
 		}
@@ -355,7 +374,7 @@ Tetris.prototype = {
 		this.nextType = this.tetrisTypeArr[Math.floor(this.tetrisTypeArr.length * Math.random())];
 		this.showNextType();
 		//generate a rabbit tetris with 0.5% probability
-		if(Math.random()>0.95){
+		if(Math.random()>0.5){
 			this.rabbit=true;
 		}
 		if(this.rabbit){
