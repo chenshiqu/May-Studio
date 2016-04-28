@@ -355,7 +355,7 @@ Tetris.prototype = {
 		this.nextType = this.tetrisTypeArr[Math.floor(this.tetrisTypeArr.length * Math.random())];
 		this.showNextType();
 		//generate a rabbit tetris with 0.5% probability
-		if(Math.random()>0.5){
+		if(Math.random()>0.95){
 			this.rabbit=true;
 		}
 		if(this.rabbit){
@@ -418,17 +418,17 @@ Tetris.prototype = {
 		
 		//get and upload score
 		var play_score=$('#play_score').html();
+
+		var state; //user state
 		$.ajax({
 			url: 'index.php/game/insert',
 			type: 'POST', 
 			data: {score:play_score},
-			//async:false,
+			async:false,
 		})
 		.done(function(return_data) {
-                                                                                   if(!return_data)
-                                                                                   {
-                                                                                        alert("请登入");
-                                                                                   }
+                                                                                   state=return_data;
+                                                                                   console.log(state);
 		})
 		.fail(function() {
 			console.log("error");
@@ -438,7 +438,16 @@ Tetris.prototype = {
 			console.log("complete");
 		});
 		
-		this.gameAlert(over_alert);
+		//this.gameAlert(over_alert);
+		console.log(state);
+		if(state==1)
+		{
+			this.gameAlert(over_alert);
+		}
+		else
+		{
+			this.gameAlert("请先登入");
+		}
 		this.resetArea();
 		return;
 	},
