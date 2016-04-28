@@ -49,4 +49,17 @@ class Game_model extends CI_Model
                 $query=$this->db->query($sql);
                 return $query->result_array();
         }
+
+        /**
+         * get the top 10 record order by score
+         * @param $table_name
+         * @return array
+         */
+        public function getTop($table_name)
+        {
+                $sql="select * from $table_name order by score desc limit 10";
+                $query=$this->db->query($sql);
+                return $query->result_array();
+        }
+
 }
