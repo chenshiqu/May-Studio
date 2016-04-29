@@ -80,7 +80,7 @@ class Maystudio extends CI_Controller
                             //var_dump($game);
                             $data['game']=$game;
 		
-                            $data['js']=array('jguestures.min','game');
+                            $data['js']=array('jgestures.min','game');
 		$data["current"]="game";
                             $this->load->view('header',$data);
                             $this->load->view('game');
