@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* CSS Document */
-
+@media{
 body{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:16px;
@@ -399,6 +399,9 @@ label.error{
 .level_menu li a.current_level{
 	background-color:black;
 }
+#play_menu_m{
+	display:none;
+}
 #tetris_ranking{
 	width:100%;
 	text-align:center;
@@ -447,4 +450,58 @@ label.error{
 
 .page_link{
 	text-align: center;
+}
+
+}
+@media (min-width:501px){
+	
+}
+@media (max-width:500px){
+	body{
+		border:none;
+	}
+	.header{
+		border-bottom:thick solid black;
+	}
+	.nav{
+		margin-bottom:1em;
+	}
+	#nav_signin{
+		display:none;
+	}
+	.content-nb .content-left{
+		width:100%;
+		margin:0;
+		
+	}
+	.content-nb .content-right{
+		width:0;
+		display:none;
+	}
+	.content-nb{
+		background:none;
+		margin:0;
+	}
+	#tetris_ranking{
+		display:none;
+	}
+	#play_area{
+		border:medium solid black;
+		margin:-3px 0 0;
+	}
+	.play_menu{
+		margin-left:1em;
+	}
+	#play_btn_start,#play_rst{
+		display:none;
+	}
+	#play_menu_m{
+		display:block;
+	}
+	#play_menu_m a{
+		background:black;
+		color:white;
+		border-radius:1em;
+		padding:0.2em 0.5em;
+	}
 }

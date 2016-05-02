@@ -92,7 +92,17 @@ Tetris.prototype = {
 				self.play();
 			}
 		});
-		
+		$("#play_start_m").click(function(){
+			/*self.e_levelMenu.hide();*/
+			if(self.playing){
+				self.pause();
+			}else if(self.death){
+				self.resetArea();
+				self.play();
+			}else{
+				self.play();
+			}
+		});
 		this.e_levelMenu.find("a").click(function(){
 			if(self.playing) return;
 			$(".level_menu li a").removeClass("current_level");
@@ -118,11 +128,52 @@ Tetris.prototype = {
 				self.showNextType();
 			}
 		});
+		$("#play_reset_m").click(function(){
+			var ran=Math.random();
+			if(ran<0.5){
+				self.pause();
+				self.gameAlert("人生这么艰难，你说重来就重来？😏");
+			}else{
+				self.pause();
+				self.resetArea();
+				clearInterval(self.timer);
+				self.preTetris = [];
+				self.offsetRow = -2;
+				self.offsetCol = 7;
+				self.tetrisType = self.nextType;
+				self.nextType = self.tetrisTypeArr[Math.floor(self.tetrisTypeArr.length * Math.random())];
+				self.showNextType();
+			}
+		});
+		$("#direction_up").click(function(){
+			if(!self.playing) return;
+			self.direction="top";
+			self.changTetris();
+		});
+		$("direction_left").click(function(){
+			if(!self.playing) return;
+			self.direction="left";
+			if(self.offsetCol > 0) self.offsetCol --;
+			self.showTetris(self.direction);
+		});
+		$("direction_right").click(function(){
+			if(!self.playing) return;
+			self.direction="right";
+			self.offsetCol ++;
+			self.showTetris(self.direction);
+		});
+		$("direction_down").click(function(){
+			if(!self.playing) return;
+			self.direction="bottom";
+			if(self.offsetRow < self.cellRow-2) self.offsetRow ++;
+			self.showTetris(self.direction);
+		});
 	},
 	//-> showTetris, nextTetris
 	play:function(){
 		var self = this;
 		this.e_startBtn.html("暂停");
+		$("#play_start_m").html("P");
 		this.playing = true;
 		this.death = false;
 		if(this.turning){
@@ -138,6 +189,7 @@ Tetris.prototype = {
 	//
 	pause:function(){
 		this.e_startBtn.html("开始")
+		$("#play_start_m").html("S");
 		this.playing = false;
 		clearTimeout(this.timer);
 	},
@@ -224,6 +276,7 @@ Tetris.prototype = {
 	//inplement the function of control
 	//->changTetris
 	drive:function(){
+		
 		switch (this.direction) {
 			case "left":
 				if(this.offsetCol > 0) this.offsetCol --;
@@ -238,9 +291,9 @@ Tetris.prototype = {
 				if(this.offsetRow < this.cellRow-2) this.offsetRow ++;
 				break;
 			case "start":
-				if(self.playing){
+				if(this.playing){
 					this.pause();
-				}else if(self.death){
+				}else if(this.death){
 					this.resetArea();
 					this.play();
 				}else{
@@ -306,7 +359,6 @@ Tetris.prototype = {
 		this.preTetris = this.thisTetris.slice(0);
 	},
 	forceRefresh_1:function(){
-		this.rabbit=false;
 		$("#description p").remove();
 		$("#description").html("<p>一个胖子的力量...😏</p>");
 		/*alert($("#description").text());*/
@@ -366,7 +418,7 @@ Tetris.prototype = {
 			}
 		}
 		//end the game for no reason with 0.1% probability
-		if(ran<0.001){
+		if(ran<0.5){
 			this.gameOver("不知道为什么，GAME OVER了，人生就是这么艰难。😏");
 			return;
 		}
@@ -386,7 +438,7 @@ Tetris.prototype = {
 		this.nextType = this.tetrisTypeArr[Math.floor(this.tetrisTypeArr.length * Math.random())];
 		this.showNextType();
 		//generate a rabbit tetris with 0.5% probability
-		if(Math.random()>0.995){
+		if(Math.random()>0.9){
 			this.rabbit=true;
 		}
 		if(this.rabbit){
@@ -434,7 +486,7 @@ Tetris.prototype = {
 						}
 					}
 				}
-			}this.sleep(500);
+			}
 			
 		}
 		this.score += this.levelScore[this.level]*this.doubleScore[this.fullArr.length-1];
@@ -470,15 +522,15 @@ Tetris.prototype = {
 		});
 		
 		//this.gameAlert(over_alert);
-		console.log(state);
+		/*console.log(state);
 		if(state==1)
-		{
+		{*/
 			this.gameAlert(over_alert);
-		}
-		else
+		//}
+		/*else
 		{
 			this.gameAlert("请先登入");
-		}
+		}*/
 		this.resetArea();
 		return;
 	},

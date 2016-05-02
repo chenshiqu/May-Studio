@@ -24,6 +24,15 @@
                                                 <p><span id="play_score">0</span></p>
                                                 <a id="play_btn_start" class="play_btn" href="javascript:void(0);" unselectable="on">开始</a>
                                                 <a id="play_rst" class="play_btn" href="javascript:void(0);" unselectable="on">重置</a>
+                                                
+                                        </div>
+                                        <div id="play_menu_m">
+                                                	<a id="direction_up" href="javascript:void(0);">    </a>
+                                                    <a id="direction_left" href="javascript:void(0);">    </a>
+                                                    <a id="direction_down" href="javascript:void(0);">    </a>
+                                                    <a id="direction_right" href="javascript:void(0);">    </a>
+                                                    <a id="play_start_m" href="javascript:void(0);">S</a>
+                                                    <a id="play_reset_m" href="javascript:void(0);">R</a>
                                         </div>
     	               </div>
 	               <div class="content-right">
