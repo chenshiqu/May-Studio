@@ -432,8 +432,10 @@ label.error{
 	position:absolute;
 	text-align:center;
 	top:20%;
-	left:40%;
+	margin:0 auto;
+	padding:0 auto;
 	z-index:1;
+	width:100%;
 }
 /*#desc{
 	position:absolute;

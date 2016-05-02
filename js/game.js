@@ -69,6 +69,7 @@ Tetris.prototype = {
 	//clear the grid and set score as 0
 	resetArea:function(){
 		$(".play_cell.active").removeClass("active");
+		$("#description").empty();
 		this.setOptions({
 			"score": 0
 		});
@@ -175,20 +176,32 @@ Tetris.prototype = {
 	//-> drive
 	control:function(){
 		var self = this;
+		if(self.playing){
+			$("#play_area").bind('swipeup',function(){self.direction="top";console.log("swipeup");});
+			$("#play_area").bind('swipedown',function(){self.direction="bottom";});
+			$("#play_area").bind('swipeleft',function(){self.direction="left";});
+			$("#play_area").bind('swiperight',function(){self.direction="right";});
+		}
 		$("html").keydown(function(e){
-			if(!self.playing) return !self.playing;
 			switch (e.keyCode) {
 				case 37:
 					self.direction = "left";
+					if(!self.playing) return !self.playing;
 					break;
 				case 38:
 					self.direction = "top";
+					if(!self.playing) return !self.playing;
 					break;
 				case 39:
 					self.direction = "right";
+					if(!self.playing) return !self.playing;
 					break;
 				case 40:
 					self.direction = "bottom";
+					if(!self.playing) return !self.playing;
+					break;
+				case 32:
+					self.direction = "start";
 					break;
 				default:
 					return;
@@ -223,6 +236,16 @@ Tetris.prototype = {
 				break;
 			case "bottom":
 				if(this.offsetRow < this.cellRow-2) this.offsetRow ++;
+				break;
+			case "start":
+				if(self.playing){
+					this.pause();
+				}else if(self.death){
+					this.resetArea();
+					this.play();
+				}else{
+					this.play();
+				}
 				break;
 			default:break;
 		}
@@ -282,9 +305,30 @@ Tetris.prototype = {
 		}
 		this.preTetris = this.thisTetris.slice(0);
 	},
+	forceRefresh_1:function(){
+		this.rabbit=false;
+		$("#description p").remove();
+		$("#description").html("<p>一个胖子的力量...😏</p>");
+		/*alert($("#description").text());*/
+		console.log($("#description").html());
+		setTimeout(self.forceRefresh_2,1000);
+		return;
+	},
+	forceRefresh_2:function(){
+		$(".play_cell.active").removeClass("active");
+		$(".play_cell.rabbit").removeClass("rabbit");
+		$("#description p").remove();
+		self.score += 500;
+		console.log(self.score);
+		self.e_playScore.html(self.score); 
+		self.fullArr = [];
+		self.nextTetris();
+		return;
+	},
 	//judge whether levels are full -> getScore
 	//if tetris touch the top layer -> gameOver
 	tetrisDown:function(){
+		self=this;
 		clearInterval(this.timer);
 		var _index;
 		var ran=Math.random();
@@ -300,31 +344,15 @@ Tetris.prototype = {
 			}
 			if($.inArray(_index - _index%this.cellCol,this.fullArr)<0) this.fullArr.push(_index - _index%this.cellCol);
 		}
+		
 		if(this.rabbit===true){
+			this.rabbit=false;
 			this.level=this.tempLevel;
-			/*console.log(this.level);
-			$("#desc").remove();
-			this.gameDesc("嘭！");
-			console.log($("#desc").html());*/
 			$("#description p").remove();
 			$("#description").html("<p>嘭！</p>");
+			/*alert($("#description").text());*/
 			console.log($("#description").html());
-			this.sleep(1000);
-			this.rabbit=false;
-			/*$("#desc").remove();*/
-			/*this.gameDesc("一个胖子的力量...");*/
-			$("#description").empty();
-			$("#description").html("<p>一个胖子的力量...</p>");
-			console.log($("#description").html());
-			$(".play_cell.active").removeClass("active");
-			$(".play_cell.rabbit").removeClass("rabbit");
-			this.sleep(1000);
-			/*$("#desc").remove();*/
-			$("#description").empty();
-			this.score += 500;
-			this.e_playScore.html(this.score); 
-			this.fullArr = [];
-			this.nextTetris();
+			setTimeout(this.forceRefresh_1,1000);
 			return;
 		}
 		if(this.fullArr.length){
@@ -333,17 +361,20 @@ Tetris.prototype = {
 		}
 		for(var i = 6; i<9; i++){
 			if(this.cellArr[i].hasClass("active")){
-				this.gameOver("没关系，人生还长嘛！😏");
+				this.gameOver("GAME OVER了，没关系，人生还长嘛！😏");
 				return;
 			}
 		}
 		//end the game for no reason with 0.1% probability
 		if(ran<0.001){
-			this.gameOver("不知道为什么，game over了，人生就是这么艰难。😏");
+			this.gameOver("不知道为什么，GAME OVER了，人生就是这么艰难。😏");
 			return;
 		}
 		this.nextTetris();
+	
 	},
+	
+	
 	//get next type of tetris randomly, ->showNextType, showTetris
 	nextTetris:function(){
 		var self = this;
@@ -355,7 +386,7 @@ Tetris.prototype = {
 		this.nextType = this.tetrisTypeArr[Math.floor(this.tetrisTypeArr.length * Math.random())];
 		this.showNextType();
 		//generate a rabbit tetris with 0.5% probability
-		if(Math.random()>0.95){
+		if(Math.random()>0.995){
 			this.rabbit=true;
 		}
 		if(this.rabbit){
@@ -461,10 +492,12 @@ Tetris.prototype = {
 		});
 	},
 	/*gameDesc:function(cont){
-		var html='<div id="desc">'+cont+'</div>';
-		$('#play_area').append(html);
+		var html='<p>'+cont+'</p>';
+		$('#description').append(html);
 	}*/
 };
 $(document).ready(function(e) {
 	var t = new Tetris();
 });
+
+
