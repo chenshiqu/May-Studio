@@ -68,6 +68,11 @@ class Episode extends CI_Controller
                 redirect($url);
         }
 
+        /**
+         * 获取子回复数组
+         * @param $parent int
+        * @return $data array()
+         */
         public function childReply($parent_id)
         {
                 $data=array();
@@ -80,6 +85,9 @@ class Episode extends CI_Controller
                 return $data;
         }
 
+        /**
+         * 递归构造子孙数组
+         */
         public function descendantReply(&$descendant,$parent)
         {
                 if($parent['child'])
@@ -95,6 +103,11 @@ class Episode extends CI_Controller
                 }
         }
 
+        /** 
+        *获取子孙回复数组
+        * @param $parent  父亲回复数据数组
+        * @return $descendant  array
+         */
         function get_descendant($parent)
         {
                 $descendant=array();
@@ -111,6 +124,7 @@ class Episode extends CI_Controller
                 $comment=$this->comment_model->get_commentByStoryId($story_id);
                 if($comment)
                 {
+                        //add username and type
                         foreach ($comment as $key => $value) {
                                 $user=$this->login_model->get_userById($value['user_id']);
                                 $data[$key]=$value;
