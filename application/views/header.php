@@ -11,21 +11,21 @@
 <div id="page">
   	<div class="header">
         <ul class="nav">
-        	<li><a href="<?php echo base_url(); ?>index.php/maystudio/index" <?php if($current=="index") echo 'class="current"' ?>><img class="logo" src="images/logo.png" alt="MayStudio logo" height="47" width="230" />首页</a></li>
-            <li><a href="<?php echo base_url(); ?>index.php/maystudio/stories" <?php if($current=="stories") echo 'class="current"' ?>>故事</a></li>
+        	<li><a href="<?php echo base_url(); ?>index.php/maystudio/game" <?php if($current=="index") echo 'class="current"' ?>><img class="logo" src="images/logo.png" alt="MayStudio logo" height="47" width="230" />游戏</a></li>
+            <!--<li><a href="<?php echo base_url(); ?>index.php/maystudio/stories" <?php if($current=="stories") echo 'class="current"' ?>>故事</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/msgboard/index" <?php if($current=="msgboard") echo 'class="current"' ?>>留言</a></li>
-            <li><a href="<?php echo base_url(); ?>index.php/maystudio/game" <?php if($current=="game") echo 'class="current"' ?>>游戏</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/maystudio/game" <?php if($current=="game") echo 'class="current"' ?>>游戏</a></li>-->
             <li id="login-nav">
             <?php if($this->session->id)
                         {?>
-                            <a >您好！<?php echo $this->session->username?></a>
+                            <a ><?php echo $this->session->username?></a>
                             /
                             <a href="<?php echo base_url(); ?>index.php/login/signout">退出</a>
             <?php } 
                          else
                         {  ?>
                             <a id="login">登录</a>
-                            ／
+                            /
                             <a href="<?php echo base_url(); ?>index.php/login/signup" >注册</a>
                         <?php } ?>
             	
