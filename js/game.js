@@ -146,24 +146,24 @@ Tetris.prototype = {
 			}
 		});
 		$("#direction_up").click(function(){
-			if(!self.playing) return;
+			if(!self.playing) return !self.playing;
 			self.direction="top";
 			self.changTetris();
 		});
-		$("direction_left").click(function(){
-			if(!self.playing) return;
+		$("#direction_left").click(function(){
+			if(!self.playing) return !self.playing;
 			self.direction="left";
 			if(self.offsetCol > 0) self.offsetCol --;
 			self.showTetris(self.direction);
 		});
-		$("direction_right").click(function(){
-			if(!self.playing) return;
+		$("#direction_right").click(function(){
+			if(!self.playing) return !self.playing;
 			self.direction="right";
 			self.offsetCol ++;
 			self.showTetris(self.direction);
 		});
-		$("direction_down").click(function(){
-			if(!self.playing) return;
+		$("#direction_down").click(function(){
+			if(!self.playing) return !self.playing;
 			self.direction="bottom";
 			if(self.offsetRow < self.cellRow-2) self.offsetRow ++;
 			self.showTetris(self.direction);
@@ -418,7 +418,7 @@ Tetris.prototype = {
 			}
 		}
 		//end the game for no reason with 0.1% probability
-		if(ran<0.5){
+		if(ran<0.005){
 			this.gameOver("不知道为什么，GAME OVER了，人生就是这么艰难。😏");
 			return;
 		}
@@ -438,7 +438,7 @@ Tetris.prototype = {
 		this.nextType = this.tetrisTypeArr[Math.floor(this.tetrisTypeArr.length * Math.random())];
 		this.showNextType();
 		//generate a rabbit tetris with 0.5% probability
-		if(Math.random()>0.9){
+		if(Math.random()>0.99){
 			this.rabbit=true;
 		}
 		if(this.rabbit){

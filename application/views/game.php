@@ -27,12 +27,41 @@
                                                 
                                         </div>
                                         <div id="play_menu_m">
-                                                	<a id="direction_up" href="javascript:void(0);">    </a>
+                                        <table>
+                                        	<tr>
+                                            	<td></td>
+                                                <td><a id="direction_up" href="javascript:void(0);">↑</a></td>
+                                                <td></td>
+                                                <td width="40px"></td>
+                                                <td width="40px"></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                            	<td><a id="direction_left" href="javascript:void(0);">←</a></td>
+                                                <td></td>
+                                                <td><a id="direction_right" href="javascript:void(0);">→</a></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a id="play_start_m" href="javascript:void(0);">S</a></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                            	<td></td>
+                                                <td><a id="direction_down" href="javascript:void(0);">↓</a></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a id="play_reset_m" href="javascript:void(0);">R</a></td>
+                                            </tr>
+                                        </table>
+                                                	<!--<a id="direction_up" href="javascript:void(0);">    </a>
                                                     <a id="direction_left" href="javascript:void(0);">    </a>
                                                     <a id="direction_down" href="javascript:void(0);">    </a>
                                                     <a id="direction_right" href="javascript:void(0);">    </a>
                                                     <a id="play_start_m" href="javascript:void(0);">S</a>
-                                                    <a id="play_reset_m" href="javascript:void(0);">R</a>
+                                                    <a id="play_reset_m" href="javascript:void(0);">R</a>-->
                                         </div>
     	               </div>
 	               <div class="content-right">
