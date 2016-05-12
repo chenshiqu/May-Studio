@@ -35,6 +35,33 @@ class Msg_model extends CI_Model
 	}
 
 	/**
+	 * get moods which have not parent
+	 */
+	public function get_mood()
+	{
+		$sql="select * from mood where parent_id=0";
+		$query=$this->db->query($sql);
+		return $query->result_array();
+	}
+
+	/**
+	 * get limited number of mood with offset
+	 * @param int $limit the number of record will return
+	 * 	int  $offset
+	 * @return 
+	 */
+	public function get_limit_rows($limit,$offset)
+	{
+		if($offset=="")
+		{
+			$offset=0;
+		}
+		$sql="select * from (select * from mood where parent_id=0 order by post_time desc)a limit {$offset},{$limit}";
+		$query=$this->db->query($sql);
+		return $query->result_array();
+	}
+
+	/**
 	 * @param $id int
 	 * @return array()
 	 */
@@ -73,5 +100,16 @@ class Msg_model extends CI_Model
 		$sql="update mood set child=1 where id=$id";
 		$query=$this->db->query($sql);
 		return $query;
+	}
+
+	/**
+	 * 查找没有父评论的记录
+	 * @return array([0]=>array{[a]=>string })
+	 */
+	public function count_rows($table)
+	{
+		$sql="select count(id) as a from mood where parent_id=0";
+		$row_num=$this->db->query($sql);
+		return $row_num->result_array();
 	}
 }

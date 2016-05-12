@@ -8,9 +8,9 @@ class Msgboard extends CI_Controller
               function __construct()
               {
 	              parent::__construct();
-	              $helper=array('form','url');
+	              $helper=array('form','url','descendant');
 	              $this->load->helper($helper);
-	              $library=array('session');
+	              $library=array('session','pagination');
 	              $this->load->library($library);
                      $model=array('msg_model','login_model');
 	              $this->load->model($model);
@@ -21,18 +21,25 @@ class Msgboard extends CI_Controller
 
             	public function index()
             	{
+                            $total_rows=$this->msg_model->count_rows('mood');
+                            $total_rows=(int)$total_rows[0]['a'];
+                            $per_page=1;
+
+                            //获取偏移量
+                            $offset=$this->uri->segment(3);
+                            $data['page_num']=ceil($total_rows/$per_page);
+                            $data['per_page']=$per_page;
+
                             $data['js']=array('msg-reply','msgtext');
                             $data['current']="msgboard";
-                            $data['mood']=$this->show_mood();
-                            $data['descendant']=$this->get_descendant($data['mood']);
-                            // $this->load->view('test',$data);
+                            $data['mood']=$this->show_mood($per_page,$offset);
                             $this->load->view('header',$data);
                             $this->load->view('msgboard');
                             $this->load->view('footer');
               }  
 
         	/**
-        	* verify if the user has logined 
+        	* verify whether the user has logined 
         	* @return 0 represent the user do not login
         	* 	      1 represent the user has logined 
         	 */
@@ -92,14 +99,26 @@ class Msgboard extends CI_Controller
                * get the last mood 
                * @return array(mood(),'username'=>'')
                */
-            	public function show_mood()
+            	public function show_mood($per_page,$offset)
             	{
-            		$result=$this->msg_model->get_last();
-                            $user=$this->login_model->get_userById($result['user_id']);
-                            $data=$result;
-                            $data['username']=$user['username'];
-                            $data['type']="mood";
-                            return $data;
+                     $data=array();
+                     // $mood=$this->msg_model->get_mood();
+                     $mood=$this->msg_model->get_limit_rows($per_page,$offset);
+                     //add username and type
+                     foreach ($mood as $key => $value) {
+                            $user=$this->login_model->get_userById($value['user_id']);
+                            $data[$key]=$value;
+                            $data[$key]['username']=$user['username'];
+                            //js 中分辨是mood还是comment
+                            $data[$key]['type']='mood';
+                     }
+
+                     //构造树形结构数组
+                     foreach ($data as $key => $value) {
+                            $data[$key]['descendant']=$this->get_descendant($value);
+                     }
+
+                     return $data;
             	}
 
               /**
@@ -123,7 +142,7 @@ class Msgboard extends CI_Controller
                * 递归函数获取子孙回复数组
                * 
                */
-              public function childReply(&$descendant,$parent)
+              public function descendantReply(&$descendant,$parent)
               {
                             if($parent['child'])
                             {
@@ -132,7 +151,7 @@ class Msgboard extends CI_Controller
                                                         $child=$value;
                                                         $child['parent_name']=$parent['username'];
                                                         array_push($descendant,$child);
-                                                        $this->childReply($descendant,$child);
+                                                        $this->descendantReply($descendant,$child);
                                           }
                             }
               }
@@ -145,7 +164,7 @@ class Msgboard extends CI_Controller
               public function get_descendant(&$parent)
               {
                             $descendant=array();
-                            $this->childReply($descendant,$parent);
+                            $this->descendantReply($descendant,$parent);
                             return $descendant;
               }
 
@@ -159,7 +178,6 @@ class Msgboard extends CI_Controller
                             $query=$this->msg_model->get_moodById($mood_id);
                             echo $query['favour'];
               }
-
               public function down_favour()
               {
                             $mood_id=$_POST['mood_id'];
