@@ -543,4 +543,12 @@ label.error{
 		width:14px;
 		height:14px;
 	}
+	#dust-1,#dust-2,#dust-3{
+	position:absolute;
+	width:250px;
+	height:130px;
+	display:none;
+	top:230px;
+	z-index:1;
+}
 }
