@@ -362,11 +362,13 @@ Tetris.prototype = {
 		$("#description p").remove();
 		$("#description").html("<p>一个胖子的力量...😏</p>");
 		/*alert($("#description").text());*/
-		console.log($("#description").html());
+		$("#dust-2").css('display','block');
 		setTimeout(self.forceRefresh_2,1000);
 		return;
 	},
 	forceRefresh_2:function(){
+		$("#dust-1").css('display','none');
+		$("#dust-2").css('display','none');
 		$(".play_cell.active").removeClass("active");
 		$(".play_cell.rabbit").removeClass("rabbit");
 		$("#description p").remove();
@@ -402,8 +404,7 @@ Tetris.prototype = {
 			this.level=this.tempLevel;
 			$("#description p").remove();
 			$("#description").html("<p>嘭！</p>");
-			/*alert($("#description").text());*/
-			console.log($("#description").html());
+			$("#dust-1").css('display','block');
 			setTimeout(this.forceRefresh_1,1000);
 			return;
 		}
@@ -418,7 +419,7 @@ Tetris.prototype = {
 			}
 		}
 		//end the game for no reason with 0.1% probability
-		if(ran<0.005){
+		if(ran<0.01){
 			this.gameOver("不知道为什么，GAME OVER了，人生就是这么艰难。😏");
 			return;
 		}
