@@ -383,7 +383,9 @@ Tetris.prototype = {
 		self.score += 500;
 		self.e_playScore.html(self.score); 
 		self.fullArr = [];
-		self.nextTetris();
+		if(!self.death){
+			self.nextTetris();
+		}
 		return;
 	},
 	//judge whether levels are full -> getScore
