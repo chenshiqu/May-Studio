@@ -316,15 +316,10 @@ label.error{
 	display:block;
 }
 /*game*/
-#dust-1,#dust-2,#dust-3{
-	position:absolute;
-	display:none;
-	top:320px;
-	z-index:1;
-}
 #play_area{
 	position:relative;
-	float:left;
+	/*float:left;*/
+	display:inline-block;
 	width:300px;
 	height:480px;
 	margin:auto;
@@ -341,21 +336,25 @@ label.error{
 	border:1px solid transparent;
 	margin:-1px 0 0 -1px;
 }
+.play_cell img{
+	position:relative;
+	z-index:1;
+	left:-20px;
+	top:-20px;
+}
 #play_area .play_cell.active{
 	background:black;
 	border:1px solid white;
 }
 #play_area .play_cell.active.rabbit{
-	background:url(../images/rabbit.jpg) no-repeat center center;
-}
-#play_area .play_cell.goal{
-	background: #0C0;
+	background:none;
 }
 .play_menu{
-	float:left;
+	display:inline-block;
+	position:relative;
 	margin-left:2em;
 	font-size:14px;
-	padding-top:20px;
+	top:-3em;
 }
 .play_menu #play_nextType{
 	width:60px;
@@ -508,8 +507,7 @@ label.error{
 	}
 	.play_menu{
 		margin-left:1em;
-		display:block;
-		float:left;
+		display:inline-block;
 	}
 	#play_btn_start,#play_rst{
 		display:none;

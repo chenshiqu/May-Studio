@@ -1,9 +1,6 @@
 <div id="content" class="content-nb">
 	<div id="container">
 		<div class="content-left">
-        	<img id="dust-1" src="images/dust1.png">
-            <img id="dust-2" src="images/dust2.png">
-            <img id="dust-3" src="images/dust3.png">
 			<div id="play_area"><div id="description"></div></div>
         	                           <div class="play_menu">
                 	                   <p>Next: </p>
@@ -28,7 +25,7 @@
                                                 <a id="play_btn_start" class="play_btn" href="javascript:void(0);" unselectable="on">开始</a>
                                                 <a id="play_rst" class="play_btn" href="javascript:void(0);" unselectable="on">重置</a>
                                                 
-                                        </div><br />
+                                        </div>
                                         <div id="play_menu_m">
                                         <table>
                                         	<tr>
