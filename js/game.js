@@ -371,11 +371,6 @@ Tetris.prototype = {
 		$(".play_cell.active").removeClass("active");
 		$(".play_cell.rabbit").removeClass("rabbit");
 		
-		
-		
-		
-		
-		
 		$(".play_cell").empty();
 		setTimeout(self.forceRefresh_2,1000);
 		return;
@@ -452,7 +447,7 @@ Tetris.prototype = {
 		this.nextType = this.tetrisTypeArr[Math.floor(this.tetrisTypeArr.length * Math.random())];
 		this.showNextType();
 		//generate a rabbit tetris with 0.5% probability
-		if(Math.random()>0.5){
+		if(Math.random()>0.99){
 			this.rabbit=true;
 		}
 		if(this.rabbit){
