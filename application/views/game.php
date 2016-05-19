@@ -1,9 +1,6 @@
 <div id="content" class="content-nb">
 	<div id="container">
 		<div class="content-left">
-        	<img id="dust-1" src="images/dust1.png">
-            <img id="dust-2" src="images/dust2.png">
-            <img id="dust-3" src="images/dust3.png">
 			<div id="play_area"><div id="description"></div></div>
         	                           <div class="play_menu">
                 	                   <p>Next: </p>
@@ -33,7 +30,7 @@
                                         <table>
                                         	<tr>
                                             	<td></td>
-                                                <td><a id="direction_up" href="javascript:void(0);">↑</a></td>
+                                                <td><a id="direction_up" href="javascript:void(0);">▲</a></td>
                                                 <td></td>
                                                 <td width="40px"></td>
                                                 <td width="40px"></td>
@@ -41,9 +38,9 @@
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                            	<td><a id="direction_left" href="javascript:void(0);">←</a></td>
+                                            	<td><a id="direction_left" href="javascript:void(0);">◀</a></td>
                                                 <td></td>
-                                                <td><a id="direction_right" href="javascript:void(0);">→</a></td>
+                                                <td><a id="direction_right" href="javascript:void(0);">▶</a></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td><a id="play_start_m" href="javascript:void(0);">S</a></td>
@@ -51,7 +48,7 @@
                                             </tr>
                                             <tr>
                                             	<td></td>
-                                                <td><a id="direction_down" href="javascript:void(0);">↓</a></td>
+                                                <td><a id="direction_down" href="javascript:void(0);">▼</a></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>

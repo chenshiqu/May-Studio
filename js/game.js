@@ -26,6 +26,7 @@ var Tetris = function(options){
 	this.turning = false;
 	this.death = false;
 	this.rabbit=false;
+	this.ifTetrisDown=false;
 	
 	this.offsetCol = Math.floor(this.cellCol/2);
 	this.offsetRow = -3;
@@ -344,44 +345,53 @@ Tetris.prototype = {
 				return;
 			}
 		};
+		
 		for(var j=0, jlen = this.preTetris.length; j<jlen; j++){
 			this.preTetris[j].removeClass("active");
-			if(this.rabbit===true){
-				this.preTetris[j].removeClass("rabbit");
-			}
+			if(this.rabbit) this.preTetris[j].removeClass("rabbit");
 		}
 		for(var k=0, klen = this.thisTetris.length; k<klen; k++){
 			this.thisTetris[k].addClass("active");
-			if(this.rabbit===true){
-				this.thisTetris[k].addClass("rabbit");
-			}
+			if(this.rabbit) this.thisTetris[k].addClass("rabbit");
+			
+		}
+		if(this.rabbit&&this.preTetris.length>0){
+			this.preTetris[this.preTetris.length-1].empty();
+			
+			
+		}
+		if(this.rabbit){
+			this.thisTetris[this.thisTetris.length-1].append("<img src='images/fat-rabbit.png'>");
 		}
 		this.preTetris = this.thisTetris.slice(0);
 	},
 	forceRefresh_1:function(){
 		$("#description p").remove();
 		$("#description").html("<p>一个胖子的力量...😏</p>");
-		/*alert($("#description").text());*/
-		$("#dust-2").css('display','block');
+		$(".play_cell.active").removeClass("active");
+		$(".play_cell.rabbit").removeClass("rabbit");
+		
+		$(".play_cell").empty();
 		setTimeout(self.forceRefresh_2,1000);
 		return;
 	},
 	forceRefresh_2:function(){
-		$("#dust-1").css('display','none');
-		$("#dust-2").css('display','none');
-		$(".play_cell.active").removeClass("active");
-		$(".play_cell.rabbit").removeClass("rabbit");
+		
 		$("#description p").remove();
+		
+		$("#play_area.play_cell.active").css("background","black");
 		self.score += 500;
-		console.log(self.score);
 		self.e_playScore.html(self.score); 
 		self.fullArr = [];
-		self.nextTetris();
+		if(!self.death){
+			self.nextTetris();
+		}
 		return;
 	},
 	//judge whether levels are full -> getScore
 	//if tetris touch the top layer -> gameOver
 	tetrisDown:function(){
+		this.ifTetrisDown=true;
 		self=this;
 		clearInterval(this.timer);
 		var _index;
@@ -401,10 +411,10 @@ Tetris.prototype = {
 		
 		if(this.rabbit===true){
 			this.rabbit=false;
+			
 			this.level=this.tempLevel;
 			$("#description p").remove();
 			$("#description").html("<p>嘭！</p>");
-			$("#dust-1").css('display','block');
 			setTimeout(this.forceRefresh_1,1000);
 			return;
 		}
@@ -443,6 +453,7 @@ Tetris.prototype = {
 			this.rabbit=true;
 		}
 		if(this.rabbit){
+			$("#play_area.play_cell.active").css("background","none");
 			this.tempLevel=this.level;
 			this.level=3;
 			/*this.gameDesc("啊...");*/
