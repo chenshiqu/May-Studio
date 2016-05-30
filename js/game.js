@@ -260,7 +260,6 @@ Tetris.prototype = {
 					return;
 					break;
 			}
-			self.e_playDirection.html(self.direction);
 			self.drive();
 			return false;
 		})
@@ -548,7 +547,7 @@ Tetris.prototype = {
 	},
 	//pop the alert box
 	gameAlert:function(cont){
-		var html='<div id="alert_background"></div><div id="alert_box"><div id="alert_cont">'+cont+'</div><a href="javascript:void(0);" class="alert_button">好吧！</a><a href="javascript:void(0);" class="alert_button">傻逼！</a></div>';
+		var html='<div id="alert_background"></div><div id="alert_box"><div id="alert_cont">'+cont+'</div><a href="javascript:void(0);" class="alert_button">好吧！</a></div>';
 		$('body').append(html);
 		$('.alert_button').click(function(){
 			$('#alert_background').remove();
